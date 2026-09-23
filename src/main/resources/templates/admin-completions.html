@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Completion Review | Seva Track</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f3f3;
+            color: #4a0015;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        .header {
+            background: #70001d;
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 10px 25px rgba(80, 0, 20, 0.15);
+        }
+
+        .header h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            background: white;
+            color: #70001d;
+            padding: 13px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .section {
+            background: white;
+            margin-top: 30px;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+        }
+
+        .section h2 {
+            margin-bottom: 8px;
+            color: #70001d;
+        }
+
+        .section-description {
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        .empty {
+            padding: 35px;
+            text-align: center;
+            background: #fff8f8;
+            border-radius: 15px;
+            color: #777;
+        }
+
+        .submission {
+            border: 1px solid #ead9dd;
+            border-left: 6px solid #ff6b00;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            background: #fffdfd;
+        }
+
+        .submission h3 {
+            color: #70001d;
+            margin-bottom: 18px;
+            font-size: 22px;
+        }
+
+        .details {
+            background: #fff8f8;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        .details p {
+            margin: 9px 0;
+            color: #555;
+        }
+
+        .details strong {
+            color: #70001d;
+        }
+
+        .report {
+            margin-top: 20px;
+        }
+
+        .report h4 {
+            color: #70001d;
+            margin-bottom: 10px;
+        }
+
+        .report-text {
+            background: white;
+            border: 1px solid #ead9dd;
+            border-radius: 10px;
+            padding: 15px;
+            line-height: 1.6;
+            color: #555;
+            white-space: pre-wrap;
+        }
+
+        .photo {
+            margin-top: 20px;
+        }
+
+        .photo h4 {
+            color: #70001d;
+            margin-bottom: 10px;
+        }
+
+        .photo img {
+            width: 100%;
+            max-width: 500px;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 12px;
+            border: 1px solid #ead9dd;
+            background: #f5f5f5;
+        }
+
+        .no-photo {
+            padding: 15px;
+            background: #fff3f3;
+            border-radius: 10px;
+            color: #777;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .status-submitted {
+            background: #fff0d5;
+            color: #9a5700;
+        }
+
+        .status-approved {
+            background: #dff5e3;
+            color: #18752d;
+        }
+
+        .status-rejected {
+            background: #ffe0e0;
+            color: #a00000;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .actions form {
+            margin: 0;
+        }
+
+        .approve-btn,
+        .reject-btn {
+            border: none;
+            padding: 13px 22px;
+            border-radius: 9px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .approve-btn {
+            background: #ff6b00;
+        }
+
+        .reject-btn {
+            background: #b00020;
+        }
+
+        .approved-message {
+            margin-top: 20px;
+            background: #e5f7e8;
+            color: #18752d;
+            padding: 14px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .rejected-message {
+            margin-top: 20px;
+            background: #ffe8e8;
+            color: #a00000;
+            padding: 14px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            color: #999;
+            margin: 30px 0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+
+            .container {
+                width: 94%;
+                margin: 20px auto;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+
+        <div>
+            <h1>📋 Completion Review</h1>
+            <p>ARMIET NSS Administration • Seva Track</p>
+        </div>
+
+        <a href="/admin-dashboard" class="back-btn">
+            ← Admin Dashboard
+        </a>
+
+    </div>
+
+
+    <!-- MAIN SECTION -->
+    <div class="section">
+
+        <h2>📸 Activity Completion Submissions</h2>
+
+        <p class="section-description">
+            Review volunteer reports and activity photos before approving
+            their completed NSS participation.
+        </p>
+
+
+        <!-- NO SUBMISSIONS -->
+        <div class="empty"
+             th:if="${#lists.isEmpty(submissions)}">
+
+            <h3>📭 No completion submissions yet</h3>
+
+            <p style="margin-top: 8px;">
+                Volunteer completion reports will appear here
+                after they submit them.
+            </p>
+
+        </div>
+
+
+        <!-- SUBMISSIONS -->
+        <div th:each="submission : ${submissions}"
+             class="submission">
+
+            <h3
+                th:text="${submission.participation.student.fullName}">
+                Volunteer Name
+            </h3>
+
+
+            <!-- BASIC DETAILS -->
+            <div class="details">
+
+                <p>
+                    🎓
+                    <strong>Roll Number:</strong>
+
+                    <span
+                        th:text="${submission.participation.student.rollNumber}">
+                        12
+                    </span>
+                </p>
+
+                <p>
+                    📅
+                    <strong>Activity:</strong>
+
+                    <span
+                        th:text="${submission.participation.activity.title}">
+                        Activity Name
+                    </span>
+                </p>
+
+                <p>
+                    ⏱️
+                    <strong>Service Hours:</strong>
+
+                    <span
+                        th:text="${submission.participation.activity.serviceHours}">
+                        2
+                    </span>
+                    hour(s)
+                </p>
+
+                <p>
+                    🕒
+                    <strong>Submitted:</strong>
+
+                    <span
+                        th:text="${submission.submittedAt}">
+                        Date
+                    </span>
+                </p>
+
+                <p>
+                    📌
+                    <strong>Status:</strong>
+
+                    <span
+                        class="status status-submitted"
+                        th:if="${submission.status.name() == 'SUBMITTED'}">
+                        SUBMITTED
+                    </span>
+
+                    <span
+                        class="status status-approved"
+                        th:if="${submission.status.name() == 'APPROVED'}">
+                        APPROVED
+                    </span>
+
+                    <span
+                        class="status status-rejected"
+                        th:if="${submission.status.name() == 'REJECTED'}">
+                        REJECTED
+                    </span>
+
+                </p>
+
+            </div>
+
+
+            <!-- VOLUNTEER REPORT -->
+            <div class="report">
+
+                <h4>📝 Volunteer Report</h4>
+
+                <div class="report-text"
+                     th:text="${submission.description}">
+                    Volunteer report goes here.
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO -->
+            <div class="photo">
+
+                <h4>📷 Activity Photo</h4>
+
+                <div th:if="${submission.photoPath != null}">
+
+                    <img
+                        th:src="${submission.photoPath}"
+                        alt="Activity completion photo">
+
+                </div>
+
+                <div
+                    class="no-photo"
+                    th:if="${submission.photoPath == null}">
+
+                    No photo was submitted.
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTIONS -->
+            <div
+                class="actions"
+                th:if="${submission.status.name() == 'SUBMITTED'}">
+
+                <form
+                    action="/admin/completions/approve"
+                    method="post">
+
+                    <input
+                        type="hidden"
+                        name="submissionId"
+                        th:value="${submission.id}">
+
+                    <button
+                        type="submit"
+                        class="approve-btn">
+
+                        ✅ Approve Completion
+
+                    </button>
+
+                </form>
+
+
+                <form
+                    action="/admin/completions/reject"
+                    method="post">
+
+                    <input
+                        type="hidden"
+                        name="submissionId"
+                        th:value="${submission.id}">
+
+                    <button
+                        type="submit"
+                        class="reject-btn">
+
+                        ❌ Reject Completion
+
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- APPROVED MESSAGE -->
+            <div
+                class="approved-message"
+                th:if="${submission.status.name() == 'APPROVED'}">
+
+                ✅ Completion approved.
+                Service hours have been counted.
+
+            </div>
+
+
+            <!-- REJECTED MESSAGE -->
+            <div
+                class="rejected-message"
+                th:if="${submission.status.name() == 'REJECTED'}">
+
+                ❌ Completion submission rejected.
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+        Seva Track • ARMIET NSS Volunteer Management System
+    </div>
+
+</div>
+
+</body>
+
+</html>

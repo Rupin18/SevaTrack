@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Volunteer Dashboard | Seva Track</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f4f2;
+            color: #333;
+        }
+
+        .dashboard-page {
+            min-height: 100vh;
+            padding: 30px 7%;
+        }
+
+        /* ================= HEADER ================= */
+
+        .dashboard-header {
+            background: linear-gradient(135deg, #700019, #3d000d);
+            color: white;
+            border-radius: 20px;
+            padding: 30px 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(70, 0, 20, 0.18);
+        }
+
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.13);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+
+        .dashboard-header h1 {
+            margin: 0 0 6px;
+            font-size: 30px;
+            letter-spacing: 0.2px;
+        }
+
+        .dashboard-header p {
+            margin: 0;
+            color: #f4dfe3;
+            font-size: 14px;
+        }
+
+        .logout-btn {
+            background: white;
+            color: #700019;
+            text-decoration: none;
+            padding: 11px 20px;
+            border-radius: 9px;
+            font-weight: 700;
+            transition: 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .logout-btn:hover {
+            background: #ff6500;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+
+        /* ================= WELCOME ================= */
+
+        .welcome-box {
+            background: white;
+            border: 1px solid #eadede;
+            border-radius: 18px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 22px rgba(50, 0, 15, 0.06);
+        }
+
+        .welcome-box h2 {
+            margin: 0 0 10px;
+            color: #650018;
+            font-size: 25px;
+        }
+
+        .welcome-box > p {
+            margin: 0 0 25px;
+            color: #707070;
+            line-height: 1.6;
+            max-width: 850px;
+        }
+
+
+        /* ================= STUDENT DETAILS ================= */
+
+        .details-title {
+            font-size: 16px;
+            color: #555;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .student-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .student-info {
+            background: #faf7f5;
+            border: 1px solid #eee3df;
+            border-radius: 11px;
+            padding: 16px;
+        }
+
+        .student-info span {
+            display: block;
+            color: #888;
+            font-size: 12px;
+            margin-bottom: 7px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .student-info strong {
+            display: block;
+            color: #4f0011;
+            font-size: 15px;
+            word-break: break-word;
+        }
+
+
+        /* ================= SECTION TITLE ================= */
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin: 5px 0 15px;
+        }
+
+        .section-title {
+            margin: 0;
+            color: #650018;
+            font-size: 23px;
+        }
+
+        .section-subtitle {
+            margin: 4px 0 0;
+            color: #888;
+            font-size: 13px;
+        }
+
+
+        /* ================= CARDS ================= */
+
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .dashboard-card {
+            background: white;
+            border: 1px solid #eadede;
+            border-radius: 16px;
+            padding: 24px;
+            min-height: 175px;
+            box-shadow: 0 6px 20px rgba(50, 0, 15, 0.05);
+            transition: transform 0.2s ease,
+                        box-shadow 0.2s ease,
+                        border-color 0.2s ease;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(50, 0, 15, 0.10);
+            border-color: #d9aab2;
+        }
+
+        .dashboard-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            cursor: pointer;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: #fff1ec;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 17px;
+        }
+
+        .dashboard-card h3 {
+            color: #650018;
+            margin: 0 0 8px;
+            font-size: 18px;
+        }
+
+        .dashboard-card p {
+            color: #777;
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.55;
+        }
+
+
+        /* ================= SERVICE HOURS ================= */
+
+        .hours-card {
+            background: linear-gradient(135deg, #fff8f4, #ffffff);
+            border-color: #f0d5ca;
+        }
+
+        .hours-number {
+            color: #ff6500;
+            font-size: 34px;
+            font-weight: 800;
+            margin: 5px 0 4px;
+        }
+
+        .hours-label {
+            color: #777;
+            font-size: 13px;
+        }
+
+
+        /* ================= ACTIVE / FUTURE ================= */
+
+        .feature-card {
+            position: relative;
+        }
+
+        .coming-soon {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: #f2eeee;
+            color: #777;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        .dashboard-footer {
+            text-align: center;
+            margin-top: 35px;
+            padding: 18px 0 5px;
+            color: #999;
+            font-size: 12px;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1000px) {
+
+            .student-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dashboard-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .dashboard-page {
+                padding: 20px 5%;
+            }
+
+            .dashboard-header {
+                padding: 25px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .brand-section {
+                align-items: flex-start;
+            }
+
+            .dashboard-header h1 {
+                font-size: 25px;
+            }
+
+            .logout-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .welcome-box {
+                padding: 23px;
+            }
+
+            .student-grid,
+            .dashboard-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .section-heading {
+                display: block;
+            }
+
+        }
+
+
+        @media (max-width: 450px) {
+
+            .dashboard-page {
+                padding: 15px 4%;
+            }
+
+            .dashboard-header {
+                border-radius: 15px;
+                padding: 20px;
+            }
+
+            .brand-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 25px;
+            }
+
+            .dashboard-header h1 {
+                font-size: 21px;
+            }
+
+            .dashboard-header p {
+                font-size: 12px;
+            }
+
+            .welcome-box h2 {
+                font-size: 21px;
+            }
+
+            .dashboard-card {
+                padding: 21px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="dashboard-page">
+
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="dashboard-header">
+
+        <div class="brand-section">
+
+            <div class="brand-icon">
+                🤝
+            </div>
+
+            <div>
+
+                <h1>
+                    Seva Track
+                </h1>
+
+                <p>
+                    ARMIET National Service Scheme • Volunteer Portal
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <a href="/logout" class="logout-btn">
+            Logout
+        </a>
+
+    </div>
+
+
+
+    <!-- ================= WELCOME ================= -->
+
+    <div class="welcome-box">
+
+        <h2>
+
+            Welcome,
+
+            <span th:text="${student.fullName}">
+                Volunteer
+            </span>
+
+            👋
+
+        </h2>
+
+        <p>
+            Welcome to your ARMIET NSS volunteer portal.
+            From here, you can view your profile information,
+            participate in NSS activities and track your approved
+            community-service hours.
+        </p>
+
+
+        <div class="details-title">
+            Volunteer Information
+        </div>
+
+
+        <div class="student-grid">
+
+
+            <div class="student-info">
+
+                <span>
+                    Full Name
+                </span>
+
+                <strong th:text="${student.fullName}">
+                    Student Name
+                </strong>
+
+            </div>
+
+
+            <div class="student-info">
+
+                <span>
+                    Roll Number
+                </span>
+
+                <strong th:text="${student.rollNumber}">
+                    00
+                </strong>
+
+            </div>
+
+
+            <div class="student-info">
+
+                <span>
+                    Department
+                </span>
+
+                <strong th:text="${student.department}">
+                    CSE
+                </strong>
+
+            </div>
+
+
+            <div class="student-info">
+
+                <span>
+                    Year
+                </span>
+
+                <strong th:text="${student.year}">
+                    First Year
+                </strong>
+
+            </div>
+
+
+            <div class="student-info">
+
+                <span>
+                    Division
+                </span>
+
+                <strong th:text="${student.division}">
+                    A
+                </strong>
+
+            </div>
+
+
+            <div class="student-info">
+
+                <span>
+                    Email
+                </span>
+
+                <strong th:text="${student.email}">
+                    student@email.com
+                </strong>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= NSS FEATURES ================= -->
+
+    <div class="section-heading">
+
+        <div>
+
+            <h2 class="section-title">
+                NSS Activities
+            </h2>
+
+            <p class="section-subtitle">
+                Manage your volunteer participation and service record.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="dashboard-cards">
+
+
+        <!-- BROWSE NSS ACTIVITIES -->
+
+        <a th:href="@{/activities(studentId=${student.id})}"
+           class="dashboard-card dashboard-link">
+
+            <div class="card-icon">
+                🩸
+            </div>
+
+            <h3>
+                Browse NSS Activities
+            </h3>
+
+            <p>
+                View available NSS activities and join
+                upcoming community-service events.
+            </p>
+
+        </a>
+
+
+        <!-- MY ACTIVITIES -->
+
+        <a th:href="@{/my-activities(studentId=${student.id})}"
+           class="dashboard-card dashboard-link">
+
+            <div class="card-icon">
+                📅
+            </div>
+
+            <h3>
+                My Activities
+            </h3>
+
+            <p>
+                View activities you have joined, along with their
+                participation and approval status.
+            </p>
+
+        </a>
+
+
+
+        <!-- SERVICE HOURS -->
+
+        <div class="dashboard-card hours-card">
+
+            <div class="card-icon">
+                ⏱️
+            </div>
+
+            <h3>
+                Service Hours
+            </h3>
+
+            <div class="hours-number"
+                 th:text="${totalServiceHours}">
+                0
+            </div>
+
+            <div class="hours-label">
+                Approved community-service hours
+            </div>
+
+        </div>
+
+
+
+        <!-- ANNOUNCEMENTS -->
+
+        <div class="dashboard-card feature-card">
+
+            <span class="coming-soon">
+                Coming Soon
+            </span>
+
+            <div class="card-icon">
+                📢
+            </div>
+
+            <h3>
+                Announcements
+            </h3>
+
+            <p>
+                Stay updated with important NSS announcements
+                and notices.
+            </p>
+
+        </div>
+
+
+
+        <!-- ACHIEVEMENTS -->
+
+        <div class="dashboard-card feature-card">
+
+            <span class="coming-soon">
+                Coming Soon
+            </span>
+
+            <div class="card-icon">
+                🏆
+            </div>
+
+            <h3>
+                Achievements
+            </h3>
+
+            <p>
+                View your NSS achievements and volunteer
+                contributions.
+            </p>
+
+        </div>
+
+
+
+        <!-- CERTIFICATES -->
+
+        <div class="dashboard-card feature-card">
+
+            <span class="coming-soon">
+                Coming Soon
+            </span>
+
+            <div class="card-icon">
+                📜
+            </div>
+
+            <h3>
+                Certificates
+            </h3>
+
+            <p>
+                Access certificates for your approved NSS
+                participation.
+            </p>
+
+        </div>
+
+
+
+        <!-- COMMUNITY SERVICE -->
+
+        <div class="dashboard-card feature-card">
+
+            <span class="coming-soon">
+                Coming Soon
+            </span>
+
+            <div class="card-icon">
+                🌱
+            </div>
+
+            <h3>
+                Community Service
+            </h3>
+
+            <p>
+                Explore ARMIET NSS community-service initiatives
+                and volunteering opportunities.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <div class="dashboard-footer">
+
+        Seva Track • ARMIET NSS Volunteer Management System
+
+    </div>
+
+
+</div>
+
+    <script>
+        window.addEventListener("pageshow", function (event) {
+            if (event.persisted) {
+                window.location.reload();
+            }
+        });
+    </script>
+
+</body>
+
+</html>

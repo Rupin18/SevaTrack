@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Registration | Seva Track</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+
+</head>
+
+<body>
+
+    <div class="registration-page">
+
+        <div class="registration-card">
+
+            <div class="registration-header">
+
+                <img src="/images/armiet-logo.png"
+                     alt="ARMIET Logo">
+
+                <div>
+                    <h1>Seva Track</h1>
+
+                    <p>
+                        ARMIET National Service Scheme
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="registration-title">
+
+                <span>ARMIET • NSS CELL</span>
+
+                <h2>Student Registration</h2>
+
+                <p>
+                    Register as an ARMIET NSS volunteer
+                    and participate in community service
+                    activities.
+                </p>
+
+            </div>
+
+
+            <!-- SUCCESS MESSAGE -->
+
+            <div class="success-message"
+                 th:if="${success}"
+                 th:text="${success}">
+            </div>
+
+
+            <!-- ERROR MESSAGE -->
+
+            <div class="error-message"
+                 th:if="${error}"
+                 th:text="${error}">
+            </div>
+
+
+            <form th:action="@{/register}"
+                  th:object="${student}"
+                  method="post">
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>Full Name</label>
+
+                        <input type="text"
+                               th:field="*{fullName}"
+                               placeholder="Enter your full name"
+                               required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Roll Number</label>
+
+                        <input type="text"
+                               th:field="*{rollNumber}"
+                               placeholder="Enter roll number"
+                               required>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>Department</label>
+
+                        <select th:field="*{department}"
+                                required>
+
+                            <option value="">
+                                Select Department
+                            </option>
+
+                            <option value="CSE">
+                                Computer Engineering
+                            </option>
+
+                            <option value="CSE AIML">
+                                CSE (AI & ML)
+                            </option>
+
+                            <option value="IT">
+                                Information Technology
+                            </option>
+
+                            <option value="Mechanical">
+                                Mechanical Engineering
+                            </option>
+
+                            <option value="Civil">
+                                Civil Engineering
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Year</label>
+
+                        <select th:field="*{year}"
+                                required>
+
+                            <option value="">
+                                Select Year
+                            </option>
+
+                            <option value="FE">
+                                First Year (FE)
+                            </option>
+
+                            <option value="SE">
+                                Second Year (SE)
+                            </option>
+
+                            <option value="TE">
+                                Third Year (TE)
+                            </option>
+
+                            <option value="BE">
+                                Final Year (BE)
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>Division</label>
+
+                        <input type="text"
+                               th:field="*{division}"
+                               placeholder="Example: A"
+                               required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Mobile Number</label>
+
+                        <input type="tel"
+                               th:field="*{mobileNumber}"
+                               placeholder="Enter mobile number"
+                               required>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Email Address</label>
+
+                    <input type="email"
+                           th:field="*{email}"
+                           placeholder="Enter email address"
+                           required>
+
+                </div>
+
+
+                <button type="submit"
+                        class="register-button">
+
+                    Register as NSS Volunteer
+
+                </button>
+
+
+            </form>
+
+
+            <a href="/"
+               class="back-home">
+
+                ← Back to Seva Track
+
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

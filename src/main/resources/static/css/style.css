@@ -1,0 +1,1946 @@
+/* =====================================================
+   SEVA TRACK — ARMIET NSS
+   Main Stylesheet
+   ===================================================== */
+
+:root {
+    --maroon: #650015;
+    --maroon-dark: #35000b;
+    --orange: #f46b18;
+    --green: #16833a;
+    --cream: #fff8ef;
+    --dark: #1c1718;
+    --text: #30282a;
+    --muted: #71676a;
+    --white: #ffffff;
+    --border: #eadfe1;
+    --shadow: 0 15px 45px rgba(60, 5, 18, 0.10);
+}
+
+
+/* =====================================================
+   RESET
+   ===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #ffffff;
+    color: var(--text);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+textarea {
+    font-family: inherit;
+}
+
+
+/* =====================================================
+   TOP BAR
+   ===================================================== */
+
+.top-bar {
+    min-height: 36px;
+
+    padding: 8px 5%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--maroon-dark),
+            var(--maroon),
+            var(--maroon-dark)
+        );
+
+    color: white;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   COLLEGE HEADER
+   ===================================================== */
+
+.college-header {
+    min-height: 135px;
+
+    padding: 18px 5%;
+
+    display: grid;
+
+    grid-template-columns:
+        280px
+        1fr
+        220px;
+
+    align-items: center;
+
+    gap: 25px;
+
+    background: white;
+}
+
+
+/* ARMIET LOGO */
+
+.logo-container img {
+    width: 260px;
+    max-height: 105px;
+
+    object-fit: contain;
+}
+
+
+/* COLLEGE NAME */
+
+.college-name {
+    text-align: center;
+}
+
+.college-name h1 {
+    font-family: Georgia, serif;
+
+    font-size: 21px;
+
+    line-height: 1.2;
+
+    color: var(--maroon);
+
+    letter-spacing: 0.5px;
+}
+
+.college-name p {
+    margin-top: 5px;
+
+    color: #444;
+
+    font-weight: 600;
+
+    font-size: 13px;
+}
+
+
+.nss-name {
+    margin-top: 12px;
+
+    font-size: 28px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    color: var(--maroon);
+}
+
+.nss-name span {
+    color: var(--orange);
+
+    padding: 0 8px;
+}
+
+
+/* NSS BADGE */
+
+.nss-badge {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    color: #173b7a;
+}
+
+.nss-circle {
+    width: 70px;
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--orange);
+
+    border: 5px solid #173b7a;
+
+    color: white;
+
+    font-size: 30px;
+}
+
+.nss-badge strong {
+    font-size: 16px;
+
+    line-height: 1.05;
+}
+
+
+/* =====================================================
+   NAVIGATION
+   ===================================================== */
+
+nav {
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    background: var(--maroon);
+
+    color: white;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.nav-container {
+    min-height: 55px;
+
+    max-width: 1450px;
+
+    margin: auto;
+
+    padding: 0 5%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 30px;
+}
+
+.nav-container a {
+    font-size: 14px;
+
+    font-weight: 700;
+
+    padding: 17px 0;
+
+    border-bottom: 3px solid transparent;
+
+    transition: 0.25s;
+}
+
+.nav-container a:hover,
+.nav-container a.active {
+    border-bottom-color: var(--orange);
+
+    color: #ffd2a5;
+}
+
+.login-btn {
+    padding: 9px 18px !important;
+
+    border: none !important;
+
+    border-radius: 8px;
+
+    background: var(--orange);
+
+    color: white !important;
+}
+
+
+/* =====================================================
+   HERO
+   ===================================================== */
+
+.hero {
+    min-height: 650px;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 80% 40%,
+            rgba(244, 107, 24, 0.28),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            110deg,
+            #180308,
+            #3d0813 55%,
+            #10271a
+        );
+}
+
+
+/* decorative tricolor */
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    right: -5%;
+    bottom: -130px;
+
+    width: 75%;
+    height: 240px;
+
+    transform: rotate(-5deg);
+
+    background:
+        linear-gradient(
+            12deg,
+            var(--green) 0 30%,
+            white 30% 58%,
+            var(--orange) 58% 82%,
+            transparent 82%
+        );
+
+    opacity: 0.9;
+}
+
+
+/* HERO CONTENT */
+
+.hero-content {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 850px;
+
+    margin-left: 8%;
+
+    padding: 80px 0;
+
+    color: white;
+}
+
+
+.hero-label {
+    color: #ffbd78;
+
+    font-size: 13px;
+
+    font-weight: 900;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 18px;
+}
+
+
+.hero h2 {
+    font-family: Georgia, serif;
+
+    font-size: clamp(70px, 10vw, 125px);
+
+    line-height: 0.9;
+
+    letter-spacing: -6px;
+}
+
+.hero h2 span {
+    color: var(--orange);
+}
+
+
+.hero h3 {
+    max-width: 750px;
+
+    margin-top: 20px;
+
+    font-size: 28px;
+
+    line-height: 1.2;
+}
+
+
+.hero-description {
+    max-width: 650px;
+
+    margin: 15px 0 30px;
+
+    color: #eadfe1;
+
+    font-size: 16px;
+}
+
+
+/* HERO BUTTONS */
+
+.hero-buttons {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+
+.btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 13px 20px;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    border: 1px solid transparent;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+
+.btn.orange {
+    background: var(--orange);
+
+    color: white;
+}
+
+
+.btn.green {
+    background: var(--green);
+
+    color: white;
+}
+
+
+.btn.outline {
+    border-color: white;
+
+    color: white;
+
+    background: transparent;
+}
+
+
+.motto {
+    display: flex;
+
+    gap: 14px;
+
+    margin-top: 25px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.motto b {
+    color: var(--orange);
+}
+
+
+/* =====================================================
+   STATISTICS
+   ===================================================== */
+
+.statistics {
+    position: relative;
+
+    z-index: 10;
+
+    margin: -35px 5% 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    box-shadow: var(--shadow);
+
+    overflow: hidden;
+}
+
+.stat-card {
+    padding: 24px;
+
+    text-align: center;
+
+    border-right: 1px solid var(--border);
+}
+
+.stat-card:last-child {
+    border-right: none;
+}
+
+.stat-card h2 {
+    color: var(--maroon);
+
+    font-size: 32px;
+}
+
+.stat-card p {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   COMMON SECTION
+   ===================================================== */
+
+.section {
+    max-width: 1500px;
+
+    margin: auto;
+
+    padding: 105px 7%;
+}
+
+
+.section-title {
+    max-width: 760px;
+
+    margin-bottom: 45px;
+}
+
+
+.section-title small {
+    color: var(--green);
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    letter-spacing: 3px;
+}
+
+
+.section-title h2 {
+    margin: 10px 0 15px;
+
+    font-family: Georgia, serif;
+
+    color: var(--maroon);
+
+    font-size: clamp(40px, 5vw, 65px);
+
+    line-height: 1.05;
+}
+
+
+.section-title h2 span {
+    color: var(--orange);
+}
+
+
+.section-title p {
+    color: var(--muted);
+
+    font-size: 16px;
+}
+
+
+/* =====================================================
+   ABOUT
+   ===================================================== */
+
+.about-grid {
+    display: grid;
+
+    grid-template-columns:
+        1.3fr
+        1fr
+        1fr;
+
+    gap: 20px;
+}
+
+
+.about-card {
+    padding: 30px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 35px rgba(60, 5, 18, 0.06);
+
+    transition: 0.3s;
+}
+
+
+.about-card:hover {
+    transform: translateY(-7px);
+}
+
+
+.about-card.large {
+    background:
+        linear-gradient(
+            145deg,
+            var(--cream),
+            white
+        );
+}
+
+
+.about-card .icon {
+    font-size: 35px;
+
+    margin-bottom: 15px;
+}
+
+
+.about-card h3 {
+    color: var(--maroon);
+
+    font-size: 24px;
+
+    margin-bottom: 10px;
+}
+
+
+.about-card p,
+.about-card li {
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+
+.about-card ul {
+    margin: 15px 0 0 20px;
+}
+
+.about-card li {
+    margin: 6px 0;
+}
+
+
+/* =====================================================
+   DARK ACTIVITIES SECTION
+   ===================================================== */
+
+.dark {
+    max-width: none;
+
+    background:
+        linear-gradient(
+            145deg,
+            #180308,
+            #380a14
+        );
+
+    color: white;
+}
+
+
+.dark .section-title {
+    max-width: 1300px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.dark .section-title small {
+    color: #ffbd78;
+}
+
+
+.dark .section-title h2 {
+    color: white;
+}
+
+
+.activity-grid {
+    max-width: 1300px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+
+.activity-card {
+    min-height: 220px;
+
+    padding: 28px;
+
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.09),
+            rgba(255,255,255,0.03)
+        );
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    transition: 0.3s;
+}
+
+
+.activity-card:hover {
+    transform: translateY(-6px);
+
+    border-color: var(--orange);
+}
+
+
+.activity-card > div {
+    font-size: 40px;
+}
+
+
+.activity-card h3 {
+    margin: 18px 0 8px;
+
+    font-size: 22px;
+}
+
+
+.activity-card p {
+    color: #cfc1c4;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   VOLUNTEERS
+   ===================================================== */
+
+.volunteer-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+}
+
+
+.volunteer-card {
+    padding: 28px;
+
+    border-radius: 17px;
+
+    border: 1px solid var(--border);
+
+    background: white;
+
+    transition: 0.3s;
+}
+
+
+.volunteer-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow: var(--shadow);
+}
+
+
+.circle {
+    width: 62px;
+    height: 62px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--maroon),
+            var(--orange)
+        );
+
+    color: white;
+
+    font-size: 23px;
+
+    font-weight: 900;
+
+    margin-bottom: 15px;
+}
+
+
+.volunteer-card h3 {
+    color: var(--maroon);
+
+    margin-bottom: 7px;
+}
+
+
+.volunteer-card p {
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   ANNOUNCEMENTS
+   ===================================================== */
+
+.announcements {
+    max-width: none;
+
+    background: var(--cream);
+}
+
+
+.announcement {
+    max-width: 1200px;
+
+    margin: 15px auto;
+
+    display: flex;
+
+    gap: 20px;
+
+    padding: 22px;
+
+    background: white;
+
+    border: 1px solid #f0dfcc;
+
+    border-radius: 16px;
+
+    transition: 0.3s;
+}
+
+
+.announcement:hover {
+    transform: translateX(5px);
+
+    box-shadow: var(--shadow);
+}
+
+
+.date {
+    width: 65px;
+    height: 65px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #fff0df;
+
+    color: var(--maroon);
+}
+
+
+.date strong {
+    font-size: 25px;
+
+    line-height: 1;
+}
+
+
+.date small {
+    font-size: 10px;
+
+    font-weight: 900;
+}
+
+
+.announcement h3 {
+    color: var(--maroon);
+
+    margin: 3px 0;
+}
+
+
+.announcement p {
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   REGISTRATION
+   ===================================================== */
+
+.registration {
+    padding: 65px 8%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--maroon),
+            #42000e
+        );
+}
+
+
+.registration small {
+    color: #ffbd78;
+
+    font-weight: 900;
+
+    letter-spacing: 3px;
+}
+
+
+.registration h2 {
+    font-family: Georgia, serif;
+
+    font-size: 50px;
+}
+
+
+.registration p {
+    color: #eadde0;
+}
+
+
+/* =====================================================
+   CONTACT
+   ===================================================== */
+
+.contact-grid {
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    gap: 25px;
+}
+
+
+.contact-info,
+.contact-form {
+    padding: 30px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    background: white;
+}
+
+
+.contact-info h3 {
+    font-family: Georgia, serif;
+
+    font-size: 30px;
+
+    color: var(--maroon);
+
+    margin-bottom: 20px;
+}
+
+
+.contact-info p {
+    color: var(--muted);
+
+    margin: 12px 0;
+}
+
+
+.contact-form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 13px;
+}
+
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    resize: vertical;
+}
+
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--green);
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+footer {
+    padding: 45px 7%;
+
+    display: grid;
+
+    grid-template-columns:
+        1.5fr
+        1fr
+        1fr;
+
+    gap: 30px;
+
+    color: white;
+
+    background: #22050b;
+}
+
+
+.footer-logo img {
+    width: 220px;
+
+    max-height: 100px;
+
+    object-fit: contain;
+}
+
+
+footer h3 {
+    margin-bottom: 8px;
+
+    color: #ffbd78;
+}
+
+
+footer p {
+    color: #cbbabe;
+
+    font-size: 13px;
+}
+
+
+.footer-motto {
+    color: var(--orange) !important;
+
+    font-family: Georgia, serif;
+
+    font-size: 22px !important;
+}
+
+
+.copyright {
+    grid-column: 1 / -1;
+
+    padding-top: 20px;
+
+    border-top: 1px solid rgba(255,255,255,0.12);
+
+    text-align: center;
+
+    color: #bdaeb1;
+
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 1000px) {
+
+    .college-header {
+        grid-template-columns:
+            220px
+            1fr;
+    }
+
+    .nss-badge {
+        display: none;
+    }
+
+    .nav-container {
+        gap: 15px;
+    }
+
+    .nav-container a {
+        font-size: 12px;
+    }
+
+    .about-grid {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .activity-grid {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .volunteer-grid {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .top-bar {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 3px;
+    }
+
+    .college-header {
+        grid-template-columns: 1fr;
+
+        text-align: center;
+    }
+
+    .logo-container img {
+        width: 230px;
+    }
+
+    .logo-container {
+        display: flex;
+
+        justify-content: center;
+    }
+
+    .college-name h1 {
+        font-size: 16px;
+    }
+
+    .nss-name {
+        font-size: 23px;
+    }
+
+    .nav-container {
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        padding: 10px 4%;
+    }
+
+    .nav-container a {
+        padding: 7px;
+    }
+
+    .hero {
+        min-height: 650px;
+    }
+
+    .hero-content {
+        margin: 0 6%;
+
+        padding: 70px 0;
+    }
+
+    .hero h2 {
+        font-size: 70px;
+    }
+
+    .hero h3 {
+        font-size: 21px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+
+    .statistics {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .stat-card {
+        border-bottom: 1px solid var(--border);
+    }
+
+    .about-grid,
+    .activity-grid,
+    .volunteer-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .registration {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .registration h2 {
+        font-size: 42px;
+    }
+
+    footer {
+        grid-template-columns: 1fr;
+    }
+
+    .copyright {
+        grid-column: auto;
+    }
+
+}
+
+
+/* =====================================================
+   ARMIET NSS IDENTITY
+   ===================================================== */
+
+.nss-identity {
+    padding: 100px 7%;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1.2fr;
+
+    gap: 70px;
+
+    align-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffaf4,
+            #ffffff 55%,
+            #f5fff8
+        );
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+/* LEFT SIDE */
+
+.identity-content {
+    max-width: 650px;
+}
+
+.identity-label {
+    margin-bottom: 15px;
+
+    color: var(--green);
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    letter-spacing: 3px;
+}
+
+.identity-content h2 {
+    margin-bottom: 20px;
+
+    color: var(--maroon);
+
+    font-family: Georgia, serif;
+
+    font-size: clamp(42px, 5vw, 65px);
+
+    line-height: 1.05;
+}
+
+.identity-content h2 span {
+    color: var(--orange);
+}
+
+.identity-content > p {
+    color: var(--muted);
+
+    font-size: 16px;
+
+    line-height: 1.8;
+}
+
+
+/* NSS MOTTO */
+
+.nss-motto {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin-top: 30px;
+
+    padding: 20px;
+
+    border-left: 5px solid var(--orange);
+
+    border-radius: 0 14px 14px 0;
+
+    background: white;
+
+    box-shadow:
+        0 10px 30px rgba(60, 5, 18, 0.07);
+}
+
+.motto-symbol {
+    width: 58px;
+    height: 58px;
+
+    flex-shrink: 0;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: var(--orange);
+
+    color: white;
+
+    font-size: 25px;
+}
+
+.nss-motto small {
+    color: var(--green);
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+.nss-motto h3 {
+    margin: 3px 0;
+
+    color: var(--maroon);
+
+    font-family: Georgia, serif;
+
+    font-size: 25px;
+}
+
+.nss-motto p {
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+
+/* RIGHT SIDE */
+
+.identity-cards {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 18px;
+}
+
+.identity-card {
+    padding: 28px;
+
+    min-height: 205px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 30px rgba(60, 5, 18, 0.05);
+
+    transition: 0.3s;
+}
+
+.identity-card:hover {
+    transform: translateY(-7px);
+
+    border-color: var(--orange);
+
+    box-shadow:
+        0 15px 40px rgba(60, 5, 18, 0.10);
+}
+
+.identity-icon {
+    width: 55px;
+    height: 55px;
+
+    display: grid;
+
+    place-items: center;
+
+    margin-bottom: 15px;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff0df,
+            #fff8ef
+        );
+
+    font-size: 27px;
+}
+
+.identity-card h3 {
+    margin-bottom: 8px;
+
+    color: var(--maroon);
+
+    font-size: 20px;
+}
+
+.identity-card p {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   IDENTITY RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 900px) {
+
+    .nss-identity {
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .identity-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .nss-identity {
+        padding: 70px 6%;
+    }
+
+}
+
+
+/* =========================================================
+   SEVA TRACK - STUDENT REGISTRATION
+   ========================================================= */
+
+.registration-page {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top right, rgba(255, 107, 0, 0.12), transparent 35%),
+        linear-gradient(135deg, #fffaf7 0%, #ffffff 55%, #fff5ed 100%);
+    padding: 60px 20px;
+    box-sizing: border-box;
+}
+
+.registration-card {
+    width: min(900px, 100%);
+    margin: 0 auto;
+    background: #ffffff;
+    border: 1px solid rgba(116, 0, 25, 0.12);
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(70, 0, 15, 0.12);
+    padding: 45px;
+    box-sizing: border-box;
+}
+
+.registration-header {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(116, 0, 25, 0.12);
+}
+
+.registration-header img {
+    width: 180px;
+    height: auto;
+    max-height: 90px;
+    object-fit: contain;
+}
+
+.registration-header h1 {
+    margin: 0;
+    color: #720019;
+    font-size: 34px;
+    font-weight: 800;
+}
+
+.registration-header p {
+    margin: 6px 0 0;
+    color: #666;
+    font-size: 15px;
+}
+
+.registration-title {
+    margin: 35px 0;
+}
+
+.registration-title span {
+    display: inline-block;
+    color: #ff6b00;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+}
+
+.registration-title h2 {
+    margin: 0 0 10px;
+    color: #720019;
+    font-size: 42px;
+    font-weight: 800;
+}
+
+.registration-title p {
+    margin: 0;
+    color: #777;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.registration-card form {
+    width: 100%;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    color: #4b0012;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #fff;
+    color: #333;
+    font-size: 15px;
+    outline: none;
+    box-sizing: border-box;
+    transition: 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #ff6b00;
+    box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.12);
+}
+
+.register-button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 16px 25px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ff6b00, #f45100);
+    color: white;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.register-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255, 107, 0, 0.25);
+}
+
+.success-message {
+    margin-bottom: 25px;
+    padding: 15px 18px;
+    border-radius: 10px;
+    background: #eaf8ef;
+    border: 1px solid #a9ddb9;
+    color: #146c2e;
+    font-weight: 600;
+}
+
+.error-message {
+    margin-bottom: 25px;
+    padding: 15px 18px;
+    border-radius: 10px;
+    background: #fff0f0;
+    border: 1px solid #efb0b0;
+    color: #a00020;
+    font-weight: 600;
+}
+
+.back-home {
+    display: block;
+    margin-top: 25px;
+    text-align: center;
+    color: #720019;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.back-home:hover {
+    color: #ff6b00;
+}
+
+
+/* Mobile */
+@media (max-width: 700px) {
+
+    .registration-page {
+        padding: 25px 15px;
+    }
+
+    .registration-card {
+        padding: 25px 20px;
+        border-radius: 18px;
+    }
+
+    .registration-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .registration-header img {
+        width: 160px;
+        max-height: 80px;
+    }
+
+    .registration-header h1 {
+        font-size: 28px;
+    }
+
+    .registration-title h2 {
+        font-size: 32px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
+
+/* =========================================================
+   SEVA TRACK - VOLUNTEER LOGIN
+   ========================================================= */
+
+.login-page {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top right, rgba(255, 107, 0, 0.12), transparent 35%),
+        linear-gradient(135deg, #fffaf5 0%, #ffffff 55%, #fff4ea 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+    box-sizing: border-box;
+}
+
+.login-card {
+    width: min(520px, 100%);
+    background: #ffffff;
+    border: 1px solid rgba(128, 0, 32, 0.15);
+    border-radius: 24px;
+    padding: 45px;
+    box-shadow: 0 20px 60px rgba(65, 0, 15, 0.12);
+    box-sizing: border-box;
+}
+
+.login-logo {
+    display: block;
+    width: 210px;
+    height: auto;
+    max-height: 100px;
+    object-fit: contain;
+    margin: 0 auto 25px;
+}
+
+.login-brand {
+    text-align: center;
+}
+
+.login-brand h1 {
+    margin: 0;
+    color: #780019;
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.login-brand h1 span {
+    color: #ff6500;
+}
+
+.login-subtitle {
+    margin: 8px 0 0;
+    color: #777;
+    font-size: 16px;
+}
+
+.login-divider {
+    height: 1px;
+    background: #eadbdb;
+    margin: 30px 0;
+}
+
+.login-heading small {
+    color: #ff6500;
+    font-weight: 800;
+    letter-spacing: 4px;
+    font-size: 12px;
+}
+
+.login-heading h2 {
+    color: #780019;
+    font-size: 38px;
+    margin: 14px 0 8px;
+    font-weight: 800;
+}
+
+.login-heading p {
+    color: #777;
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+.login-error {
+    background: #fff0f0;
+    color: #a00020;
+    border: 1px solid #e6a5b0;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 22px;
+    font-size: 14px;
+}
+
+.login-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.login-card label {
+    color: #650018;
+    font-weight: 700;
+    margin-top: 8px;
+}
+
+.login-card input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px 16px;
+    border: 1px solid #d9cccc;
+    border-radius: 10px;
+    background: #fff;
+    color: #333;
+    font-size: 16px;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.login-card input:focus {
+    border-color: #ff6500;
+    box-shadow: 0 0 0 3px rgba(255, 101, 0, 0.12);
+}
+
+.login-submit {
+    width: 100%;
+    border: none;
+    margin-top: 18px;
+    padding: 15px 20px;
+    border-radius: 10px;
+    background: #ff6500;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.login-submit:hover {
+    background: #e95500;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(255, 101, 0, 0.22);
+}
+
+.login-footer {
+    text-align: center;
+    margin-top: 28px;
+    color: #777;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.login-footer a {
+    color: #780019;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.login-footer a:hover {
+    color: #ff6500;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+    .login-page {
+        padding: 25px 15px;
+    }
+
+    .login-card {
+        padding: 30px 22px;
+        border-radius: 18px;
+    }
+
+    .login-logo {
+        width: 170px;
+    }
+
+    .login-brand h1 {
+        font-size: 34px;
+    }
+
+    .login-heading h2 {
+        font-size: 30px;
+    }
+
+}
+
+/* Force Seva Track login button styling */
+.login-card .login-submit {
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    margin-top: 18px;
+
+    background: #ff6500 !important;
+    color: #ffffff !important;
+
+    border: none !important;
+    border-radius: 10px !important;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    cursor: pointer;
+    text-align: center;
+
+    box-shadow: 0 8px 20px rgba(255, 101, 0, 0.18);
+}
+
+.login-card .login-submit:hover {
+    background: #e95500 !important;
+    transform: translateY(-1px);
+}

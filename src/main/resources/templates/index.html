@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Seva Track | ARMIET NSS Cell</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}"
+          href="/css/style.css">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="top-bar">
+        <span>🏫 ARMIET COLLEGE</span>
+        <span>🇮🇳 NATIONAL SERVICE SCHEME</span>
+    </div>
+
+    <div class="college-header">
+
+        <div class="logo-container">
+            <img src="/images/armiet-logo.png"
+                 alt="ARMIET College Logo">
+        </div>
+
+        <div class="college-name">
+            <h1>ALAMURI RATNAMALA INSTITUTE OF ENGINEERING & TECHNOLOGY</h1>
+            <p>Koti Vidya Charitable Trust</p>
+
+            <div class="nss-name">
+                ARMIET <span>•</span> NSS CELL
+            </div>
+        </div>
+
+        <div class="nss-badge">
+            <div class="nss-circle">✦</div>
+            <strong>
+                NATIONAL<br>
+                SERVICE<br>
+                SCHEME
+            </strong>
+        </div>
+
+    </div>
+
+
+    <!-- Navigation -->
+
+    <nav>
+
+        <div class="nav-container">
+
+            <a href="#home" class="active">Home</a>
+
+            <a href="#about">About NSS</a>
+
+            <a href="#activities">Activities</a>
+
+            <a href="#volunteers">Volunteers</a>
+
+            <a href="#announcements">Announcements</a>
+
+            <a href="#gallery">Gallery</a>
+
+            <a href="#contact">Contact</a>
+
+            <a href="/login" class="login-btn">
+                🔐 Login
+            </a>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section id="home" class="hero">
+
+    <div class="hero-content">
+
+        <p class="hero-label">
+            ARMIET • NATIONAL SERVICE SCHEME
+        </p>
+
+        <h2>
+            <span>SEVA</span> TRACK
+        </h2>
+
+        <h3>
+            ARMIET NSS Volunteer & Activity
+            Management System
+        </h3>
+
+        <p class="hero-description">
+
+            A dedicated digital platform for managing
+            NSS volunteers, activities, announcements
+            and community service initiatives at ARMIET.
+
+        </p>
+
+        <div class="hero-buttons">
+
+            <button
+                type="button"
+                class="btn orange"
+                onclick="window.open('/register', '_self');">
+                Student Registration →
+            </button>
+
+            <a href="/login" class="btn green">
+                Volunteer Login →
+            </a>
+
+            <a href="/admin/login" class="btn outline">
+                Admin Login →
+            </a>
+
+        </div>
+
+        <div class="motto">
+
+            <span>Service</span>
+            <b>•</b>
+            <span>Leadership</span>
+            <b>•</b>
+            <span>Community</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= STATISTICS ================= -->
+<!-- ================= ARMIET NSS IDENTITY ================= -->
+
+<section class="nss-identity">
+
+    <div class="identity-content">
+
+        <div class="identity-label">
+            ARMIET • NATIONAL SERVICE SCHEME
+        </div>
+
+        <h2>
+            Service with a <span>purpose.</span>
+        </h2>
+
+        <p>
+            Seva Track is the dedicated digital platform
+            for the ARMIET NSS Cell, created to organize
+            volunteers, activities, participation and
+            community-service initiatives.
+        </p>
+
+        <div class="nss-motto">
+            <div class="motto-symbol">✦</div>
+
+            <div>
+                <small>NSS MOTTO</small>
+
+                <h3>“Not Me, But You”</h3>
+
+                <p>
+                    Putting community service before
+                    individual interest.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="identity-cards">
+
+        <div class="identity-card">
+            <div class="identity-icon">🎓</div>
+
+            <h3>Student Volunteers</h3>
+
+            <p>
+                Connect students with NSS activities
+                and community-service opportunities.
+            </p>
+        </div>
+
+
+        <div class="identity-card">
+            <div class="identity-icon">🤝</div>
+
+            <h3>Community Service</h3>
+
+            <p>
+                Organize and record initiatives that
+                create a positive community impact.
+            </p>
+        </div>
+
+
+        <div class="identity-card">
+            <div class="identity-icon">📋</div>
+
+            <h3>Activity Management</h3>
+
+            <p>
+                Maintain organized records of NSS
+                events, participation and activities.
+            </p>
+        </div>
+
+
+        <div class="identity-card">
+            <div class="identity-icon">🇮🇳</div>
+
+            <h3>National Service</h3>
+
+            <p>
+                Encourage students to contribute
+                responsibly to society and the nation.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="statistics">
+
+    <div class="stat-card">
+
+        <h2>500+</h2>
+        <p>Active Volunteers</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <h2>75+</h2>
+        <p>Activities Conducted</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <h2>25+</h2>
+        <p>NSS Events</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <h2>1</h2>
+        <p>Unified NSS Platform</p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section id="about" class="section">
+
+    <div class="section-title">
+
+        <small>ABOUT THE CELL</small>
+
+        <h2>
+            Built for <span>ARMIET NSS.</span>
+            Built for service.
+        </h2>
+
+        <p>
+            Seva Track brings ARMIET NSS volunteers,
+            activities and communication together
+            in one organized digital platform.
+        </p>
+
+    </div>
+
+
+    <div class="about-grid">
+
+        <div class="about-card large">
+
+            <div class="icon">🤝</div>
+
+            <h3>ARMIET NSS Cell</h3>
+
+            <p>
+                Supporting students and volunteers
+                in planning, participating in and
+                recording community-service initiatives.
+            </p>
+
+            <ul>
+
+                <li>Volunteer Management</li>
+
+                <li>Activity Records</li>
+
+                <li>Participation Tracking</li>
+
+                <li>NSS Announcements</li>
+
+                <li>Community Service Records</li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="about-card">
+
+            <div class="icon">🎓</div>
+
+            <h3>Student Volunteers</h3>
+
+            <p>
+                Students can register, view NSS
+                activities and participate in
+                community-service programs.
+            </p>
+
+        </div>
+
+
+        <div class="about-card">
+
+            <div class="icon">🛡️</div>
+
+            <h3>Admin Control</h3>
+
+            <p>
+                Authorized administrators can manage
+                volunteers, activities and announcements.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ACTIVITIES ================= -->
+
+<section id="activities" class="section dark">
+
+    <div class="section-title light">
+
+        <small>COMMUNITY SERVICE</small>
+
+        <h2>
+            Our Major <span>Activities</span>
+        </h2>
+
+        <p>
+            NSS activities that can be managed
+            through Seva Track.
+        </p>
+
+    </div>
+
+
+    <div class="activity-grid">
+
+        <div class="activity-card">
+
+            <div>🩸</div>
+
+            <h3>Blood Donation</h3>
+
+            <p>
+                Blood donation camps and
+                volunteer participation.
+            </p>
+
+        </div>
+
+
+        <div class="activity-card">
+
+            <div>♻️</div>
+
+            <h3>Cleanliness Drives</h3>
+
+            <p>
+                Community cleanliness and
+                awareness campaigns.
+            </p>
+
+        </div>
+
+
+        <div class="activity-card">
+
+            <div>🌱</div>
+
+            <h3>Tree Plantation</h3>
+
+            <p>
+                Environmental awareness and
+                plantation activities.
+            </p>
+
+        </div>
+
+
+        <div class="activity-card">
+
+            <div>❤️</div>
+
+            <h3>Health Awareness</h3>
+
+            <p>
+                Health education and
+                community outreach.
+            </p>
+
+        </div>
+
+
+        <div class="activity-card">
+
+            <div>⛺</div>
+
+            <h3>NSS Special Camps</h3>
+
+            <p>
+                NSS camp activities and
+                volunteer participation.
+            </p>
+
+        </div>
+
+
+        <div class="activity-card">
+
+            <div>🫶</div>
+
+            <h3>Community Outreach</h3>
+
+            <p>
+                Service initiatives supporting
+                local communities.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= VOLUNTEERS ================= -->
+
+<section id="volunteers" class="section">
+
+    <div class="section-title">
+
+        <small>VOLUNTEER NETWORK</small>
+
+        <h2>
+            One platform for every
+            <span>volunteer.</span>
+        </h2>
+
+        <p>
+            Manage NSS volunteer information
+            and participation from one place.
+        </p>
+
+    </div>
+
+
+    <div class="volunteer-grid">
+
+        <div class="volunteer-card">
+
+            <div class="circle">V</div>
+
+            <h3>Volunteer Profile</h3>
+
+            <p>
+                Personal details, NSS role
+                and participation.
+            </p>
+
+        </div>
+
+
+        <div class="volunteer-card">
+
+            <div class="circle">A</div>
+
+            <h3>Activity History</h3>
+
+            <p>
+                Track events attended and
+                service contributions.
+            </p>
+
+        </div>
+
+
+        <div class="volunteer-card">
+
+            <div class="circle">✓</div>
+
+            <h3>Attendance</h3>
+
+            <p>
+                Digital attendance records
+                for NSS activities.
+            </p>
+
+        </div>
+
+
+        <div class="volunteer-card">
+
+            <div class="circle">★</div>
+
+            <h3>Achievements</h3>
+
+            <p>
+                Recognize volunteer contribution
+                and leadership.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ANNOUNCEMENTS ================= -->
+
+<section id="announcements" class="section announcements">
+
+    <div class="section-title">
+
+        <small>NSS UPDATES</small>
+
+        <h2>
+            Latest <span>Announcements</span>
+        </h2>
+
+        <p>
+            Official NSS announcements will
+            appear here.
+        </p>
+
+    </div>
+
+
+    <div class="announcement">
+
+        <div class="date">
+
+            <strong>01</strong>
+
+            <small>JUN</small>
+
+        </div>
+
+        <div>
+
+            <small>NSS UPDATE</small>
+
+            <h3>Blood Donation Camp</h3>
+
+            <p>
+                NSS Blood Donation Camp
+                announcement and participation details.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="announcement">
+
+        <div class="date">
+
+            <strong>22</strong>
+
+            <small>MAY</small>
+
+        </div>
+
+        <div>
+
+            <small>ENVIRONMENT</small>
+
+            <h3>Tree Plantation Drive</h3>
+
+            <p>
+                Join the ARMIET NSS environmental
+                awareness initiative.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= REGISTRATION ================= -->
+
+<section id="registration" class="registration">
+
+    <div>
+
+        <small>JOIN ARMIET NSS</small>
+
+        <h2>Ready to serve?</h2>
+
+        <p>
+            Become a part of the ARMIET NSS
+            volunteer community.
+        </p>
+
+    </div>
+
+    <a href="/register" class="btn orange">
+        Register as Volunteer →
+    </a>
+
+</section>
+
+
+<!-- ================= CONTACT ================= -->
+
+<section id="contact" class="section">
+
+    <div class="section-title">
+
+        <small>GET IN TOUCH</small>
+
+        <h2>
+            ARMIET NSS <span>Cell</span>
+        </h2>
+
+    </div>
+
+
+    <div class="contact-grid">
+
+        <div class="contact-info">
+
+            <h3>ARMIET College</h3>
+
+            <p>
+                📍 A.S. Rao Nagar, Village Sapgaon,
+                Tal. Shahapur, Dist. Thane –
+                421601, Maharashtra
+            </p>
+
+            <p>
+                🌐 www.armiet.in
+            </p>
+
+            <p>
+                🇮🇳 National Service Scheme
+            </p>
+
+        </div>
+
+
+        <div class="contact-form">
+
+            <input
+                type="text"
+                placeholder="Your Name">
+
+            <input
+                type="email"
+                placeholder="Your Email">
+
+            <textarea
+                placeholder="Your Message"
+                rows="5"></textarea>
+
+            <button class="btn orange">
+                Send Message →
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-logo">
+
+        <img
+            src="/images/armiet-logo.png"
+            alt="ARMIET">
+
+    </div>
+
+
+    <div>
+
+        <h3>ARMIET NSS CELL</h3>
+
+        <p>
+            Seva Track — NSS Volunteer &
+            Activity Management System
+        </p>
+
+    </div>
+
+
+    <div>
+
+        <h3>National Service Scheme</h3>
+
+        <p class="footer-motto">
+            “Not Me, But You”
+        </p>
+
+    </div>
+
+
+    <div class="copyright">
+
+        © <span id="year"></span>
+        ARMIET NSS Cell.
+        All Rights Reserved.
+
+    </div>
+
+</footer>
+
+
+<script
+    th:src="@{/js/script.js}"
+    src="/js/script.js">
+</script>
+
+</body>
+</html>

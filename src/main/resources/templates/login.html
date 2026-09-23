@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Volunteer Login | Seva Track</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <div class="login-page">
+
+        <div class="login-card">
+
+            <img
+                src="/images/armiet-logo.png"
+                alt="ARMIET College Logo"
+                class="login-logo"
+            >
+
+            <h1>Seva <span>Track</span></h1>
+
+            <p class="login-subtitle">
+                ARMIET National Service Scheme
+            </p>
+
+            <hr>
+
+            <p class="login-label">
+                ARMIET • NSS CELL
+            </p>
+
+            <h2>Volunteer Login</h2>
+
+            <p>
+                Login to access your NSS volunteer dashboard.
+            </p>
+
+            <div class="login-error"
+                 th:if="${error}"
+                 th:text="${error}">
+            </div>
+
+            <form action="/login" method="post">
+
+                <label>Roll Number</label>
+
+                <input
+                    type="text"
+                    name="rollNumber"
+                    placeholder="Enter your roll number"
+                    required
+                >
+
+                <label>Registered Email</label>
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your registered email"
+                    required
+                >
+
+                <button
+                    type="submit"
+                    class="login-submit"
+                    style="
+                        display: block;
+                        width: 100%;
+                        padding: 15px 20px;
+                        margin-top: 18px;
+                        background: #ff6500 !important;
+                        color: white !important;
+                        border: none !important;
+                        border-radius: 10px !important;
+                        font-size: 16px;
+                        font-weight: 700;
+                        cursor: pointer;
+                        text-align: center;
+                    ">
+                    🔐 Login to Dashboard
+                </button>
+            </form>
+
+            <p>
+                Not registered yet?
+                <a href="/register">
+                    Register as NSS Volunteer →
+                </a>
+            </p>
+
+            <a href="/">
+                ← Back to Seva Track
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

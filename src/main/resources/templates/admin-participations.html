@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Participation | Seva Track</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f4f2;
+            color: #333;
+        }
+
+        .admin-page {
+            min-height: 100vh;
+            padding: 30px 7%;
+        }
+
+        /* ================= HEADER ================= */
+
+        .admin-header {
+            background: linear-gradient(
+                135deg,
+                #700019,
+                #3d000d
+            );
+
+            color: white;
+
+            padding: 30px 35px;
+
+            border-radius: 20px;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 10px 30px rgba(70, 0, 20, 0.18);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .header-icon {
+            width: 55px;
+            height: 55px;
+
+            border-radius: 14px;
+
+            background:
+                rgba(255, 255, 255, 0.13);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 28px;
+        }
+
+        .admin-header h1 {
+            margin: 0 0 6px;
+            font-size: 30px;
+        }
+
+        .admin-header p {
+            margin: 0;
+            color: #f4dfe3;
+            font-size: 14px;
+        }
+
+        /* ================= BACK BUTTON ================= */
+
+        .back-btn {
+            background: white;
+            color: #700019;
+
+            text-decoration: none;
+
+            padding: 11px 20px;
+
+            border-radius: 9px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+
+            transition: 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background: #ff6500;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* ================= MAIN CARD ================= */
+
+        .participations-card {
+            background: white;
+
+            padding: 28px;
+
+            border-radius: 17px;
+
+            border: 1px solid #eadede;
+
+            box-shadow:
+                0 6px 20px rgba(50, 0, 15, 0.06);
+        }
+
+        .card-heading {
+            margin-bottom: 22px;
+        }
+
+        .card-heading h2 {
+            color: #650018;
+
+            margin: 0 0 5px;
+
+            font-size: 22px;
+        }
+
+        .card-heading p {
+            color: #777;
+
+            margin: 0;
+
+            font-size: 14px;
+        }
+
+        /* ================= PARTICIPATION GRID ================= */
+
+        .participation-list {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(300px, 1fr));
+
+            gap: 20px;
+        }
+
+        /* ================= PARTICIPATION CARD ================= */
+
+        .participation-item {
+            background: #fffaf7;
+
+            padding: 22px;
+
+            border-radius: 14px;
+
+            border: 1px solid #eadede;
+
+            border-left: 5px solid #ff6500;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .participation-item:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 9px 22px rgba(50, 0, 15, 0.08);
+        }
+
+        .participation-item h3 {
+            color: #650018;
+
+            margin: 0 0 17px;
+
+            font-size: 19px;
+        }
+
+        /* ================= DETAILS ================= */
+
+        .participation-details {
+            background: white;
+
+            border: 1px solid #eee3df;
+
+            border-radius: 10px;
+
+            padding: 12px 14px;
+        }
+
+        .participation-item p {
+            color: #666;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+
+            margin: 9px 0;
+        }
+
+        .participation-item p:first-child {
+            margin-top: 0;
+        }
+
+        .participation-item p:last-child {
+            margin-bottom: 0;
+        }
+
+        .participation-item strong {
+            color: #4f0011;
+        }
+
+        /* ================= SERVICE HOURS ================= */
+
+        .hours {
+            display: inline-block;
+
+            background: #fff0e9;
+
+            color: #d95000;
+
+            padding: 5px 9px;
+
+            border-radius: 6px;
+
+            font-weight: 700;
+
+            font-size: 12px;
+        }
+
+        /* ================= STATUS ================= */
+
+        .status {
+            display: inline-block;
+
+            padding: 6px 11px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.3px;
+        }
+
+        .pending {
+            background: #fff1d6;
+            color: #9a5a00;
+        }
+
+        .approved {
+            background: #e3f6e3;
+            color: #176b17;
+        }
+
+        /* ================= COMPLETION REVIEW MESSAGE ================= */
+
+        .review-message {
+            margin-top: 17px;
+
+            padding: 12px 14px;
+
+            border-radius: 9px;
+
+            background: #fff4ec;
+
+            color: #8f4300;
+
+            border: 1px solid #f2c09d;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+        .review-link {
+            display: inline-block;
+
+            margin-top: 9px;
+
+            color: #700019;
+
+            font-weight: 700;
+
+            text-decoration: none;
+        }
+
+        .review-link:hover {
+            text-decoration: underline;
+        }
+
+        /* ================= APPROVED MESSAGE ================= */
+
+        .approved-message {
+            margin-top: 16px;
+
+            padding: 11px;
+
+            text-align: center;
+
+            border-radius: 9px;
+
+            background: #eaf7ec;
+
+            color: #176b2a;
+
+            border: 1px solid #b5dfbc;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+        /* ================= EMPTY STATE ================= */
+
+        .no-participations {
+            text-align: center;
+
+            padding: 50px 20px;
+
+            background: #faf7f5;
+
+            border: 1px dashed #dfd3ce;
+
+            border-radius: 12px;
+
+            color: #777;
+        }
+
+        .empty-icon {
+            font-size: 40px;
+
+            margin-bottom: 10px;
+        }
+
+        .no-participations h3 {
+            color: #650018;
+
+            margin: 0 0 8px;
+
+            font-size: 21px;
+        }
+
+        .no-participations p {
+            margin: 0;
+
+            font-size: 14px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        .footer {
+            text-align: center;
+
+            margin-top: 25px;
+
+            color: #999;
+
+            font-size: 12px;
+        }
+
+        /* ================= TABLET ================= */
+
+        @media (max-width: 800px) {
+
+            .admin-page {
+                padding: 20px 5%;
+            }
+
+            .header-content {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+            .back-btn {
+                width: 100%;
+
+                text-align: center;
+            }
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 450px) {
+
+            .admin-page {
+                padding: 15px 4%;
+            }
+
+            .admin-header {
+                padding: 20px;
+
+                border-radius: 15px;
+            }
+
+            .header-icon {
+                width: 46px;
+                height: 46px;
+
+                font-size: 24px;
+            }
+
+            .admin-header h1 {
+                font-size: 23px;
+            }
+
+            .admin-header p {
+                font-size: 12px;
+            }
+
+            .participations-card {
+                padding: 20px;
+            }
+
+            .participation-item {
+                padding: 19px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="admin-page">
+
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="admin-header">
+
+        <div class="header-content">
+
+
+            <div class="header-left">
+
+                <div class="header-icon">
+                    👥
+                </div>
+
+                <div>
+
+                    <h1>
+                        Participation Management
+                    </h1>
+
+                    <p>
+                        ARMIET NSS Administration • Seva Track
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <a href="/admin/activities"
+               class="back-btn">
+
+                ← Activity Management
+
+            </a>
+
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= PARTICIPATIONS ================= -->
+
+    <section class="participations-card">
+
+
+        <div class="card-heading">
+
+            <h2>
+                📋 Volunteer Participation
+            </h2>
+
+            <p>
+                View volunteer participation records.
+                Completion approval is handled through Completion Review.
+            </p>
+
+        </div>
+
+
+        <!-- ================= NO PARTICIPATIONS ================= -->
+
+        <div th:if="${#lists.isEmpty(participations)}"
+             class="no-participations">
+
+            <div class="empty-icon">
+                👥
+            </div>
+
+            <h3>
+                No Participation Records
+            </h3>
+
+            <p>
+                Volunteer participation records will appear here
+                when students join NSS activities.
+            </p>
+
+        </div>
+
+
+        <!-- ================= PARTICIPATION LIST ================= -->
+
+        <div class="participation-list"
+             th:unless="${#lists.isEmpty(participations)}">
+
+
+            <div class="participation-item"
+                 th:each="participation : ${participations}">
+
+
+                <!-- VOLUNTEER -->
+
+                <h3
+                    th:text="${participation.student.fullName}">
+
+                    Volunteer Name
+
+                </h3>
+
+
+                <div class="participation-details">
+
+
+                    <!-- ROLL NUMBER -->
+
+                    <p>
+
+                        🎓
+
+                        <strong>
+                            Roll Number:
+                        </strong>
+
+                        <span
+                            th:text="${participation.student.rollNumber}">
+
+                            00
+
+                        </span>
+
+                    </p>
+
+
+                    <!-- ACTIVITY -->
+
+                    <p>
+
+                        📅
+
+                        <strong>
+                            Activity:
+                        </strong>
+
+                        <span
+                            th:text="${participation.activity.title}">
+
+                            Activity
+
+                        </span>
+
+                    </p>
+
+
+                    <!-- SERVICE HOURS -->
+
+                    <p>
+
+                        ⏱️
+
+                        <strong>
+                            Service Hours:
+                        </strong>
+
+                        <span
+                            class="hours"
+                            th:text="${participation.activity.serviceHours + ' hour(s)'}">
+
+                            0 hour(s)
+
+                        </span>
+
+                    </p>
+
+
+                    <!-- STATUS -->
+
+                    <p>
+
+                        📌
+
+                        <strong>
+                            Participation Status:
+                        </strong>
+
+
+                        <span
+                            class="status"
+                            th:classappend="${participation.status != null and participation.status.name() == 'APPROVED'} ? ' approved' : ' pending'"
+                            th:text="${participation.status != null ? participation.status : 'PENDING'}">
+
+                            PENDING
+
+                        </span>
+
+                    </p>
+
+
+                </div>
+
+
+                <!-- ================= PENDING ================= -->
+
+                <div
+                    th:if="${participation.status == null or participation.status.name() == 'PENDING'}"
+                    class="review-message">
+
+                    ⏳ This volunteer has joined the activity.
+                    Completion must be submitted and reviewed
+                    before service hours are counted.
+
+                    <br>
+
+                    <a href="/admin/completions"
+                       class="review-link">
+
+                        📸 Open Completion Review →
+
+                    </a>
+
+                </div>
+
+
+                <!-- ================= ALREADY APPROVED ================= -->
+
+                <div
+                    th:if="${participation.status != null and participation.status.name() == 'APPROVED'}"
+                    class="approved-message">
+
+                    ✓ Participation completed and approved.
+                    Service hours have been counted.
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <div class="footer">
+
+        Seva Track • ARMIET NSS Volunteer Management System
+
+    </div>
+
+
+</div>
+
+</body>
+
+</html>

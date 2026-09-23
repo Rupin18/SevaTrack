@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login | Seva Track</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #fffaf7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 450px;
+            background: white;
+            border: 1px solid #ead9d9;
+            border-radius: 22px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(80, 0, 20, 0.08);
+        }
+
+        .login-card h1 {
+            color: #700019;
+            margin-bottom: 10px;
+        }
+
+        .login-card p {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #550012;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #ff6500;
+        }
+
+        .login-btn {
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #ff6500;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            background: #e95500;
+        }
+
+        .error-message {
+            background: #ffe5e5;
+            color: #a00000;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #700019;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="login-card">
+
+        <h1>🔐 Admin Login</h1>
+
+        <p>
+            Login to manage ARMIET NSS activities and volunteers.
+        </p>
+
+        <div class="error-message"
+             th:if="${error}"
+             th:text="${error}">
+        </div>
+
+        <form action="/admin/login" method="post">
+
+            <label>Username</label>
+
+            <input
+                type="text"
+                name="username"
+                placeholder="Enter admin username"
+                required
+            >
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter admin password"
+                required
+            >
+
+            <button type="submit" class="login-btn">
+                🔐 Login as Admin
+            </button>
+
+        </form>
+
+        <a href="/" class="back-link">
+            ← Back to Seva Track
+        </a>
+
+    </div>
+
+</body>
+
+</html>

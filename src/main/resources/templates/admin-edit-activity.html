@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Activity - Seva Track</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(
+                135deg,
+                #fff5f5,
+                #ffe5e5
+            );
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .header {
+            background: linear-gradient(
+                135deg,
+                #8b0000,
+                #c00000
+            );
+            color: white;
+            padding: 25px;
+            border-radius: 18px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .header h1 {
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #c00000;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        button,
+        .cancel-btn {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .save-btn {
+            background: #c00000;
+            color: white;
+        }
+
+        .save-btn:hover {
+            background: #8b0000;
+        }
+
+        .cancel-btn {
+            background: #eeeeee;
+            color: #333;
+        }
+
+        .cancel-btn:hover {
+            background: #dddddd;
+        }
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>✏️ Edit NSS Activity</h1>
+
+        <p>
+            Update the details of this NSS activity
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <form
+            th:action="@{/admin/activities/edit/{id}(id=${activity.id})}"
+            th:object="${activity}"
+            method="post">
+
+
+            <div class="form-group">
+
+                <label for="title">
+                    Activity Title
+                </label>
+
+                <input
+                    type="text"
+                    id="title"
+                    th:field="*{title}"
+                    placeholder="Enter activity title"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="date">
+                    Activity Date
+                </label>
+
+                <input
+                    type="date"
+                    id="date"
+                    th:field="*{date}"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="location">
+                    Location
+                </label>
+
+                <input
+                    type="text"
+                    id="location"
+                    th:field="*{location}"
+                    placeholder="Enter activity location"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="serviceHours">
+                    Service Hours
+                </label>
+
+                <input
+                    type="number"
+                    id="serviceHours"
+                    th:field="*{serviceHours}"
+                    min="0"
+                    placeholder="Enter service hours"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="description">
+                    Description
+                </label>
+
+                <textarea
+                    id="description"
+                    th:field="*{description}"
+                    placeholder="Enter activity description"
+                    required></textarea>
+
+            </div>
+
+
+            <div class="buttons">
+
+                <a
+                    href="/admin/activities"
+                    class="cancel-btn">
+                    ← Cancel
+                </a>
+
+                <button
+                    type="submit"
+                    class="save-btn">
+                    💾 Save Changes
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

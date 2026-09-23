@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Activities | Seva Track</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f4f2;
+            color: #333;
+        }
+
+        .admin-page {
+            min-height: 100vh;
+            padding: 30px 7%;
+        }
+
+
+        /* ================= HEADER ================= */
+
+        .admin-header {
+            background: linear-gradient(
+                135deg,
+                #700019,
+                #3d000d
+            );
+
+            color: white;
+
+            padding: 30px 35px;
+
+            border-radius: 20px;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 10px 30px rgba(70, 0, 20, 0.18);
+        }
+
+
+        .header-content {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+        }
+
+
+        .header-left {
+            display: flex;
+
+            align-items: center;
+
+            gap: 16px;
+        }
+
+
+        .header-icon {
+            width: 55px;
+            height: 55px;
+
+            border-radius: 14px;
+
+            background:
+                rgba(255, 255, 255, 0.13);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 28px;
+        }
+
+
+        .admin-header h1 {
+            margin: 0 0 6px;
+
+            font-size: 30px;
+        }
+
+
+        .admin-header p {
+            margin: 0;
+
+            color: #f4dfe3;
+
+            font-size: 14px;
+        }
+
+
+        /* ================= BACK BUTTON ================= */
+
+        .back-btn {
+            display: inline-block;
+
+            background: white;
+
+            color: #700019;
+
+            text-decoration: none;
+
+            padding: 11px 20px;
+
+            border-radius: 9px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+
+            transition: 0.2s ease;
+        }
+
+
+        .back-btn:hover {
+            background: #ff6500;
+
+            color: white;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* ================= CARDS ================= */
+
+        .form-card,
+        .activities-card {
+            background: white;
+
+            padding: 28px;
+
+            border-radius: 17px;
+
+            margin-bottom: 25px;
+
+            border: 1px solid #eadede;
+
+            box-shadow:
+                0 6px 20px rgba(50, 0, 15, 0.06);
+        }
+
+
+        .card-heading {
+            margin-bottom: 22px;
+        }
+
+
+        .card-heading h2 {
+            color: #650018;
+
+            margin: 0 0 5px;
+
+            font-size: 22px;
+        }
+
+
+        .card-heading p {
+            color: #777;
+
+            margin: 0;
+
+            font-size: 14px;
+        }
+
+
+        /* ================= FORM ================= */
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 18px;
+        }
+
+
+        .form-group {
+            margin-bottom: 4px;
+        }
+
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+
+        label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-weight: 700;
+
+            color: #4f0011;
+
+            font-size: 13px;
+        }
+
+
+        input,
+        textarea {
+            width: 100%;
+
+            padding: 13px;
+
+            border-radius: 9px;
+
+            border: 1px solid #dcd6d3;
+
+            font-size: 14px;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            outline: none;
+
+            transition: 0.2s ease;
+        }
+
+
+        input:focus,
+        textarea:focus {
+            border-color: #ff6500;
+
+            box-shadow:
+                0 0 0 3px rgba(255, 101, 0, 0.10);
+        }
+
+
+        textarea {
+            min-height: 105px;
+
+            resize: vertical;
+        }
+
+
+        .add-btn {
+            margin-top: 20px;
+
+            background: #ff6500;
+
+            color: white;
+
+            border: none;
+
+            padding: 13px 23px;
+
+            border-radius: 9px;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+        }
+
+
+        .add-btn:hover {
+            background: #e95500;
+
+            transform: translateY(-1px);
+        }
+
+
+        /* ================= ACTIVITY LIST ================= */
+
+        .activity-list {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 20px;
+        }
+
+
+        .activity-item {
+            background: #fffaf7;
+
+            padding: 22px;
+
+            border-radius: 14px;
+
+            border: 1px solid #eadede;
+
+            border-left: 5px solid #ff6500;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        .activity-item:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 9px 22px rgba(50, 0, 15, 0.08);
+        }
+
+
+        .activity-item h3 {
+            margin: 0 0 17px;
+
+            color: #650018;
+
+            font-size: 19px;
+
+            line-height: 1.35;
+        }
+
+
+        .activity-details {
+            background: white;
+
+            border: 1px solid #eee3df;
+
+            border-radius: 10px;
+
+            padding: 12px 14px;
+
+            margin-bottom: 13px;
+        }
+
+
+        .activity-item p {
+            color: #666;
+
+            font-size: 13px;
+
+            line-height: 1.55;
+
+            margin: 9px 0;
+        }
+
+
+        .activity-details p:first-child {
+            margin-top: 0;
+        }
+
+
+        .activity-details p:last-child {
+            margin-bottom: 0;
+        }
+
+
+        .activity-item strong {
+            color: #4f0011;
+        }
+
+
+        .description {
+            color: #777 !important;
+
+            margin-bottom: 0 !important;
+        }
+
+
+        /* ================= EDIT BUTTON ================= */
+
+        .edit-btn {
+            display: inline-block;
+            margin-top: 15px;
+            background: #700019;
+            color: white;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: 0.2s ease;
+        }
+
+        .edit-btn:hover {
+            background: #4f0011;
+            transform: translateY(-1px);
+        }
+
+
+        /* ================= ACTIVITY ACTIONS ================= */
+
+        .activity-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .activity-actions .edit-btn {
+            margin-top: 0;
+        }
+
+        .delete-btn {
+            display: inline-block;
+            background: #b00020;
+            color: white;
+            border: none;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .delete-btn:hover {
+            background: #850018;
+            transform: translateY(-1px);
+        }
+
+        .delete-form {
+            margin: 0;
+        }
+
+        @media (max-width: 450px) {
+            .activity-actions {
+                flex-direction: column;
+            }
+
+            .activity-actions .edit-btn,
+            .delete-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+
+        /* ================= HOURS ================= */
+
+        .hours {
+            display: inline-block;
+
+            background: #fff0e9;
+
+            color: #d95000;
+
+            padding: 5px 9px;
+
+            border-radius: 6px;
+
+            font-weight: 700;
+
+            font-size: 12px;
+        }
+
+
+        /* ================= EMPTY ================= */
+
+        .empty-state {
+            text-align: center;
+
+            padding: 35px 20px;
+
+            color: #777;
+
+            background: #faf7f5;
+
+            border-radius: 12px;
+
+            border: 1px dashed #dfd3ce;
+        }
+
+
+        .empty-state-icon {
+            font-size: 35px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .empty-state p {
+            margin: 0;
+
+            font-size: 14px;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        .footer {
+            text-align: center;
+
+            margin-top: 25px;
+
+            color: #999;
+
+            font-size: 12px;
+        }
+
+
+        /* ================= TABLET ================= */
+
+        @media (max-width: 800px) {
+
+            .admin-page {
+                padding: 20px 5%;
+            }
+
+
+            .header-content {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+
+            .back-btn {
+                width: 100%;
+
+                text-align: center;
+            }
+
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .full-width {
+                grid-column: auto;
+            }
+
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 450px) {
+
+            .admin-page {
+                padding: 15px 4%;
+            }
+
+
+            .admin-header {
+                padding: 20px;
+
+                border-radius: 15px;
+            }
+
+
+            .header-icon {
+                width: 46px;
+                height: 46px;
+
+                font-size: 24px;
+            }
+
+
+            .admin-header h1 {
+                font-size: 23px;
+            }
+
+
+            .admin-header p {
+                font-size: 12px;
+            }
+
+
+            .form-card,
+            .activities-card {
+                padding: 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="admin-page">
+
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="admin-header">
+
+        <div class="header-content">
+
+
+            <div class="header-left">
+
+                <div class="header-icon">
+                    ⚙️
+                </div>
+
+                <div>
+
+                    <h1>
+                        Activity Management
+                    </h1>
+
+                    <p>
+                        ARMIET NSS Administration • Seva Track
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <a href="/admin-dashboard" class="back-btn">
+
+                ← Back to Admin Dashboard 
+
+            </a>
+
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ================= ADD ACTIVITY ================= -->
+
+    <section class="form-card">
+
+
+        <div class="card-heading">
+
+            <h2>
+                ➕ Add New NSS Activity
+            </h2>
+
+            <p>
+                Enter the details below to publish a new activity
+                for ARMIET NSS volunteers.
+            </p>
+
+        </div>
+
+
+
+        <form th:action="@{/admin/activities/add}"
+              th:object="${activity}"
+              method="post">
+
+
+            <div class="form-grid">
+
+
+                <!-- TITLE -->
+
+                <div class="form-group full-width">
+
+                    <label>
+                        Activity Title
+                    </label>
+
+                    <input type="text"
+                           th:field="*{title}"
+                           placeholder="Enter activity title"
+                           required>
+
+                </div>
+
+
+
+                <!-- DATE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Activity Date
+                    </label>
+
+                    <input type="date"
+                           th:field="*{date}"
+                           required>
+
+                </div>
+
+
+
+                <!-- SERVICE HOURS -->
+
+                <div class="form-group">
+
+                    <label>
+                        Service Hours
+                    </label>
+
+                    <input type="number"
+                           th:field="*{serviceHours}"
+                           placeholder="Enter service hours"
+                           min="1"
+                           required>
+
+                </div>
+
+
+
+                <!-- LOCATION -->
+
+                <div class="form-group full-width">
+
+                    <label>
+                        Location
+                    </label>
+
+                    <input type="text"
+                           th:field="*{location}"
+                           placeholder="Enter activity location"
+                           required>
+
+                </div>
+
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="form-group full-width">
+
+                    <label>
+                        Description
+                    </label>
+
+                    <textarea th:field="*{description}"
+                              placeholder="Describe the NSS activity"
+                              required></textarea>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- SUBMIT -->
+
+            <button type="submit"
+                    class="add-btn">
+
+                ➕ Add Activity
+
+            </button>
+
+
+        </form>
+
+    </section>
+
+
+
+    <!-- ================= EXISTING ACTIVITIES ================= -->
+
+    <section class="activities-card">
+
+
+        <div class="card-heading">
+
+            <h2>
+                📋 Existing Activities
+            </h2>
+
+            <p>
+                Activities currently available in the Seva Track system.
+            </p>
+
+        </div>
+
+
+
+        <!-- ACTIVITY LIST -->
+
+        <div class="activity-list"
+             th:if="${!activities.isEmpty()}">
+
+
+            <div class="activity-item"
+                 th:each="activity : ${activities}">
+
+
+                <h3 th:text="${activity.title}">
+                    Activity Title
+                </h3>
+
+
+                <div class="activity-details">
+
+
+                    <!-- DATE -->
+
+                    <p>
+
+                        📅
+
+                        <strong>
+                            Date:
+                        </strong>
+
+                        <span th:text="${activity.date}">
+                            Date
+                        </span>
+
+                    </p>
+
+
+
+                    <!-- SERVICE HOURS -->
+
+                    <p>
+
+                        ⏱️
+
+                        <strong>
+                            Service Hours:
+                        </strong>
+
+                        <span class="hours"
+                              th:text="${activity.serviceHours + ' hour(s)'}">
+                            0 hour(s)
+                        </span>
+
+                    </p>
+
+
+
+                    <!-- LOCATION -->
+
+                    <p>
+
+                        📍
+
+                        <strong>
+                            Location:
+                        </strong>
+
+                        <span th:text="${activity.location}">
+                            Location
+                        </span>
+
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- DESCRIPTION -->
+
+                <p class="description"
+                   th:text="${activity.description}">
+
+                    Description
+
+                </p>
+
+
+                <!-- ACTIVITY ACTIONS -->
+
+                <div class="activity-actions">
+
+                    <!-- EDIT ACTIVITY -->
+
+                    <a th:href="@{/admin/activities/edit/{id}(id=${activity.id})}"
+                       class="edit-btn">
+
+                        ✏️ Edit Activity
+
+                    </a>
+
+
+                    <!-- DELETE ACTIVITY -->
+
+                    <form th:action="@{/admin/activities/delete/{id}(id=${activity.id})}"
+                          method="post"
+                          class="delete-form"
+                          onsubmit="return confirm('Are you sure you want to delete this activity?');">
+
+                        <button type="submit"
+                                class="delete-btn">
+
+                            🗑️ Delete Activity
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- NO ACTIVITIES -->
+
+        <div class="empty-state"
+             th:if="${activities.isEmpty()}">
+
+            <div class="empty-state-icon">
+                📋
+            </div>
+
+            <p>
+                No activities have been added yet.
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <div class="footer">
+
+        Seva Track • ARMIET NSS Volunteer Management System
+
+    </div>
+
+
+</div>
+
+</body>
+
+</html>
