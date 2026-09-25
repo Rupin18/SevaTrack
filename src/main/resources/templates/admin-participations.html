@@ -10,434 +10,484 @@
 
     <title>Manage Participation | Seva Track</title>
 
-    <link rel="stylesheet" href="/css/style.css">
+    
 
     <style>
-
-        * {
-            box-sizing: border-box;
+        :root {
+            --crimson: #8b1230;
+            --crimson-dark: #450817;
+            --crimson-deep: #28040d;
+            --blue: #1f5f9f;
+            --blue-dark: #123f70;
+            --blue-light: #e5f0ff;
+            --gold: #d6a84f;
+            --gold-light: #f0d58d;
+            --cream: #fffaf7;
+            --white: #ffffff;
+            --text: #291a20;
+            --muted: #75666c;
+            --border: rgba(139, 18, 48, 0.12);
         }
+
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f7f4f2;
-            color: #333;
+            font-family: Inter, "Segoe UI", Arial, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 4% 4%, rgba(31,95,159,.09), transparent 24%),
+                radial-gradient(circle at 96% 92%, rgba(214,168,79,.10), transparent 25%),
+                linear-gradient(135deg, #fffaf9, #ffffff 48%, #f7fbff);
         }
 
         .admin-page {
             min-height: 100vh;
-            padding: 30px 7%;
+            width: min(1180px, calc(100% - 36px));
+            margin: 0 auto;
+            padding: 24px 0 34px;
         }
 
-        /* ================= HEADER ================= */
-
-        .admin-header {
-            background: linear-gradient(
-                135deg,
-                #700019,
-                #3d000d
-            );
-
-            color: white;
-
-            padding: 30px 35px;
-
-            border-radius: 20px;
-
-            margin-bottom: 25px;
-
-            box-shadow:
-                0 10px 30px rgba(70, 0, 20, 0.18);
-        }
-
-        .header-content {
+        .topbar {
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
             gap: 20px;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .header-icon {
-            width: 55px;
-            height: 55px;
-
-            border-radius: 14px;
-
-            background:
-                rgba(255, 255, 255, 0.13);
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            font-size: 28px;
-        }
-
-        .admin-header h1 {
-            margin: 0 0 6px;
-            font-size: 30px;
-        }
-
-        .admin-header p {
-            margin: 0;
-            color: #f4dfe3;
-            font-size: 14px;
-        }
-
-        /* ================= BACK BUTTON ================= */
-
-        .back-btn {
-            background: white;
-            color: #700019;
-
-            text-decoration: none;
-
-            padding: 11px 20px;
-
-            border-radius: 9px;
-
-            font-weight: 700;
-
-            white-space: nowrap;
-
-            transition: 0.2s ease;
-        }
-
-        .back-btn:hover {
-            background: #ff6500;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* ================= MAIN CARD ================= */
-
-        .participations-card {
-            background: white;
-
-            padding: 28px;
-
-            border-radius: 17px;
-
-            border: 1px solid #eadede;
-
-            box-shadow:
-                0 6px 20px rgba(50, 0, 15, 0.06);
-        }
-
-        .card-heading {
             margin-bottom: 22px;
         }
 
-        .card-heading h2 {
-            color: #650018;
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
 
+        .brand-logo {
+            width: 54px;
+            height: 54px;
+            object-fit: contain;
+            padding: 5px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 9px 24px rgba(69,8,23,.10);
+        }
+
+        .brand-title strong {
+            display: block;
+            color: var(--crimson);
+            font-size: 21px;
+            letter-spacing: -.4px;
+        }
+
+        .brand-title span {
+            display: block;
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 10px;
+            letter-spacing: 1.15px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .dashboard-link {
+            text-decoration: none;
+            color: var(--crimson);
+            background: rgba(255,255,255,.86);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 10px 15px;
+            font-size: 13px;
+            font-weight: 800;
+            transition: .2s ease;
+        }
+
+        .dashboard-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(69,8,23,.08);
+            border-color: rgba(139,18,48,.25);
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 90% 15%, rgba(31,95,159,.24), transparent 28%),
+                radial-gradient(circle at 20% 120%, rgba(214,168,79,.14), transparent 34%),
+                linear-gradient(135deg, var(--crimson), var(--crimson-dark) 68%, var(--crimson-deep));
+            color: white;
+            padding: 30px 34px;
+            border-radius: 25px;
+            box-shadow: 0 18px 42px rgba(69,8,23,.18);
+            margin-bottom: 20px;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border: 1px solid rgba(240,213,141,.24);
+            border-radius: 50%;
+            right: -65px;
+            bottom: -85px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .hero-left {
+            display: flex;
+            align-items: center;
+            gap: 17px;
+        }
+
+        .hero-icon {
+            width: 62px;
+            height: 62px;
+            flex: 0 0 62px;
+            display: grid;
+            place-items: center;
+            border-radius: 18px;
+            background: rgba(255,255,255,.12);
+            border: 1px solid rgba(255,255,255,.14);
+            font-size: 29px;
+        }
+
+        .eyebrow {
             margin: 0 0 5px;
-
-            font-size: 22px;
+            color: var(--gold-light);
+            font-size: 10px;
+            letter-spacing: 1.35px;
+            text-transform: uppercase;
+            font-weight: 900;
         }
 
-        .card-heading p {
-            color: #777;
-
+        .hero h1 {
             margin: 0;
-
-            font-size: 14px;
+            font-size: clamp(26px, 4vw, 34px);
+            letter-spacing: -.9px;
         }
 
-        /* ================= PARTICIPATION GRID ================= */
+        .hero p {
+            margin: 7px 0 0;
+            color: #f3e5e9;
+            font-size: 13px;
+        }
+
+        .hero-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--crimson-dark);
+            background: white;
+            padding: 11px 16px;
+            border-radius: 11px;
+            font-size: 12px;
+            font-weight: 900;
+            white-space: nowrap;
+            transition: .2s ease;
+        }
+
+        .hero-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(0,0,0,.13);
+        }
+
+        .content-card {
+            background: rgba(255,255,255,.93);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 27px;
+            box-shadow: 0 10px 30px rgba(69,8,23,.07);
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .section-heading h2 {
+            margin: 0 0 5px;
+            color: var(--crimson-dark);
+            font-size: 21px;
+            letter-spacing: -.4px;
+        }
+
+        .section-heading p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .section-tag {
+            color: var(--blue-dark);
+            background: var(--blue-light);
+            border: 1px solid rgba(31,95,159,.11);
+            border-radius: 999px;
+            padding: 7px 11px;
+            font-size: 10px;
+            font-weight: 900;
+            white-space: nowrap;
+        }
 
         .participation-list {
             display: grid;
-
-            grid-template-columns:
-                repeat(auto-fit, minmax(300px, 1fr));
-
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 18px;
         }
 
-        /* ================= PARTICIPATION CARD ================= */
-
         .participation-item {
-            background: #fffaf7;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(145deg, #fff, #fffaf7);
+            border: 1px solid #eadfe1;
+            border-radius: 17px;
+            padding: 20px;
+            transition: .22s ease;
+        }
 
-            padding: 22px;
-
-            border-radius: 14px;
-
-            border: 1px solid #eadede;
-
-            border-left: 5px solid #ff6500;
-
-            transition:
-                transform 0.2s ease,
-                box-shadow 0.2s ease;
+        .participation-item::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(var(--crimson), var(--blue), var(--gold));
         }
 
         .participation-item:hover {
             transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(69,8,23,.09);
+            border-color: rgba(139,18,48,.18);
+        }
 
-            box-shadow:
-                0 9px 22px rgba(50, 0, 15, 0.08);
+        .volunteer-head {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .avatar {
+            width: 43px;
+            height: 43px;
+            display: grid;
+            place-items: center;
+            flex: 0 0 43px;
+            border-radius: 13px;
+            color: white;
+            background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+            font-weight: 900;
         }
 
         .participation-item h3 {
-            color: #650018;
-
-            margin: 0 0 17px;
-
-            font-size: 19px;
+            margin: 0;
+            color: var(--crimson-dark);
+            font-size: 18px;
+            letter-spacing: -.3px;
         }
 
-        /* ================= DETAILS ================= */
+        .volunteer-label {
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: .8px;
+            font-weight: 800;
+        }
 
         .participation-details {
-            background: white;
-
-            border: 1px solid #eee3df;
-
-            border-radius: 10px;
-
-            padding: 12px 14px;
+            display: grid;
+            gap: 9px;
+            background: #fff;
+            border: 1px solid #eee5e6;
+            border-radius: 13px;
+            padding: 13px;
         }
 
-        .participation-item p {
-            color: #666;
-
-            font-size: 13px;
-
-            line-height: 1.5;
-
-            margin: 9px 0;
-        }
-
-        .participation-item p:first-child {
-            margin-top: 0;
-        }
-
-        .participation-item p:last-child {
-            margin-bottom: 0;
-        }
-
-        .participation-item strong {
-            color: #4f0011;
-        }
-
-        /* ================= SERVICE HOURS ================= */
-
-        .hours {
-            display: inline-block;
-
-            background: #fff0e9;
-
-            color: #d95000;
-
-            padding: 5px 9px;
-
-            border-radius: 6px;
-
-            font-weight: 700;
-
+        .detail-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            color: #6e6066;
             font-size: 12px;
         }
 
-        /* ================= STATUS ================= */
+        .detail-row strong {
+            color: #46343b;
+            font-weight: 800;
+        }
+
+        .detail-value {
+            text-align: right;
+            color: #5d4d54;
+            font-weight: 600;
+        }
+
+        .hours {
+            display: inline-flex;
+            align-items: center;
+            background: #fff8e9;
+            color: #916c1c;
+            border: 1px solid rgba(214,168,79,.22);
+            padding: 5px 8px;
+            border-radius: 7px;
+            font-weight: 900;
+            font-size: 11px;
+        }
 
         .status {
-            display: inline-block;
-
-            padding: 6px 11px;
-
-            border-radius: 20px;
-
-            font-size: 11px;
-
-            font-weight: 700;
-
-            letter-spacing: 0.3px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 9px;
+            border-radius: 999px;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: .3px;
         }
 
         .pending {
-            background: #fff1d6;
-            color: #9a5a00;
+            background: #fff5df;
+            color: #986400;
+            border: 1px solid #f0d79d;
         }
 
         .approved {
-            background: #e3f6e3;
-            color: #176b17;
+            background: #e8f7ee;
+            color: #187043;
+            border: 1px solid #bce2cb;
         }
 
-        /* ================= COMPLETION REVIEW MESSAGE ================= */
+        .review-message,
+        .approved-message {
+            margin-top: 14px;
+            padding: 12px 13px;
+            border-radius: 11px;
+            font-size: 11px;
+            line-height: 1.55;
+        }
 
         .review-message {
-            margin-top: 17px;
-
-            padding: 12px 14px;
-
-            border-radius: 9px;
-
-            background: #fff4ec;
-
-            color: #8f4300;
-
-            border: 1px solid #f2c09d;
-
-            font-size: 13px;
-
-            line-height: 1.5;
+            color: #795b20;
+            background: #fffaf0;
+            border: 1px solid rgba(214,168,79,.27);
         }
 
         .review-link {
             display: inline-block;
-
-            margin-top: 9px;
-
-            color: #700019;
-
-            font-weight: 700;
-
+            margin-top: 8px;
+            color: var(--blue-dark);
+            font-weight: 900;
             text-decoration: none;
         }
 
-        .review-link:hover {
-            text-decoration: underline;
-        }
-
-        /* ================= APPROVED MESSAGE ================= */
+        .review-link:hover { text-decoration: underline; }
 
         .approved-message {
-            margin-top: 16px;
-
-            padding: 11px;
-
             text-align: center;
-
-            border-radius: 9px;
-
-            background: #eaf7ec;
-
-            color: #176b2a;
-
-            border: 1px solid #b5dfbc;
-
-            font-size: 13px;
-
-            font-weight: 700;
+            color: #176b43;
+            background: #eef9f2;
+            border: 1px solid #c3e4cf;
+            font-weight: 800;
         }
-
-        /* ================= EMPTY STATE ================= */
 
         .no-participations {
             text-align: center;
-
-            padding: 50px 20px;
-
-            background: #faf7f5;
-
-            border: 1px dashed #dfd3ce;
-
-            border-radius: 12px;
-
-            color: #777;
+            padding: 55px 20px;
+            background: linear-gradient(145deg, #fffaf7, #f9fbff);
+            border: 1px dashed #d9ced1;
+            border-radius: 17px;
         }
 
         .empty-icon {
-            font-size: 40px;
-
-            margin-bottom: 10px;
+            width: 64px;
+            height: 64px;
+            display: grid;
+            place-items: center;
+            margin: 0 auto 13px;
+            border-radius: 19px;
+            background: var(--blue-light);
+            color: var(--blue-dark);
+            font-size: 27px;
         }
 
         .no-participations h3 {
-            color: #650018;
-
-            margin: 0 0 8px;
-
-            font-size: 21px;
+            margin: 0 0 7px;
+            color: var(--crimson-dark);
+            font-size: 20px;
         }
 
         .no-participations p {
             margin: 0;
-
-            font-size: 14px;
+            color: var(--muted);
+            font-size: 13px;
         }
-
-        /* ================= FOOTER ================= */
 
         .footer {
             text-align: center;
-
-            margin-top: 25px;
-
-            color: #999;
-
-            font-size: 12px;
+            margin-top: 20px;
+            color: #93868b;
+            font-size: 10px;
         }
 
-        /* ================= TABLET ================= */
+        .footer strong { color: var(--crimson); }
 
-        @media (max-width: 800px) {
+        @media (max-width: 760px) {
+            .admin-page { width: min(100% - 24px, 1180px); padding-top: 15px; }
 
-            .admin-page {
-                padding: 20px 5%;
-            }
+            .topbar { align-items: flex-start; }
 
-            .header-content {
+            .hero-content {
                 flex-direction: column;
-
                 align-items: flex-start;
             }
 
-            .back-btn {
-                width: 100%;
+            .hero-back { width: 100%; justify-content: center; }
 
-                text-align: center;
-            }
+            .section-heading { align-items: flex-start; flex-direction: column; }
+
+            .content-card { padding: 20px; }
         }
 
-        /* ================= MOBILE ================= */
+        @media (max-width: 480px) {
+            .brand-logo { width: 45px; height: 45px; }
+            .brand-title strong { font-size: 18px; }
+            .brand-title span { font-size: 8px; }
 
-        @media (max-width: 450px) {
+            .dashboard-link { font-size: 11px; padding: 8px 10px; }
 
-            .admin-page {
-                padding: 15px 4%;
+            .hero { padding: 23px 20px; border-radius: 19px; }
+            .hero-icon { width: 52px; height: 52px; flex-basis: 52px; }
+            .hero-left { gap: 12px; }
+
+            .participation-list {
+                grid-template-columns: 1fr;
             }
 
-            .admin-header {
-                padding: 20px;
+            .participation-item { padding: 17px; }
 
-                border-radius: 15px;
+            .detail-row {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 3px;
             }
 
-            .header-icon {
-                width: 46px;
-                height: 46px;
-
-                font-size: 24px;
-            }
-
-            .admin-header h1 {
-                font-size: 23px;
-            }
-
-            .admin-header p {
-                font-size: 12px;
-            }
-
-            .participations-card {
-                padding: 20px;
-            }
-
-            .participation-item {
-                padding: 19px;
-            }
+            .detail-value { text-align: left; }
         }
-
     </style>
 
 </head>
@@ -445,24 +495,38 @@
 
 <body>
 
+
 <div class="admin-page">
+
+    <div class="topbar">
+        <div class="brand">
+            <img src="/images/nss-logo.png" alt="NSS Logo" class="brand-logo">
+            <div class="brand-title">
+                <strong>SevaTrack</strong>
+                <span>ARMIET NSS Management</span>
+            </div>
+        </div>
+
+        <a href="/admin-dashboard" class="dashboard-link">Admin Dashboard</a>
+    </div>
+
 
 
     <!-- ================= HEADER ================= -->
 
-    <header class="admin-header">
+    <header class="hero">
 
-        <div class="header-content">
+        <div class="hero-content">
 
 
-            <div class="header-left">
+            <div class="hero-left">
 
-                <div class="header-icon">
+                <div class="hero-icon">
                     👥
                 </div>
 
                 <div>
-
+                    <div class="eyebrow">ARMIET NSS • ADMIN PORTAL</div>
                     <h1>
                         Participation Management
                     </h1>
@@ -477,7 +541,7 @@
 
 
             <a href="/admin/activities"
-               class="back-btn">
+               class="hero-back">
 
                 ← Activity Management
 
@@ -491,10 +555,10 @@
 
     <!-- ================= PARTICIPATIONS ================= -->
 
-    <section class="participations-card">
+    <section class="content-card">
 
 
-        <div class="card-heading">
+        <div class="section-heading">
 
             <h2>
                 📋 Volunteer Participation
@@ -541,29 +605,35 @@
 
                 <!-- VOLUNTEER -->
 
-                <h3
-                    th:text="${participation.student.fullName}">
+                <div class="volunteer-head">
+                    <div class="avatar"
+                         th:text="${#strings.substring(participation.student.fullName, 0, 1).toUpperCase()}">V</div>
 
-                    Volunteer Name
-
-                </h3>
+                    <div>
+                        <h3
+                            th:text="${participation.student.fullName}">
+                            Volunteer Name
+                        </h3>
+                        <div class="volunteer-label">NSS Volunteer</div>
+                    </div>
+                </div>
 
 
                 <div class="participation-details">
 
 
-                    <!-- ROLL NUMBER -->
+                    <!-- ARMIET PIN -->
 
                     <p>
 
                         🎓
 
                         <strong>
-                            Roll Number:
+                            ARMIET PIN:
                         </strong>
 
                         <span
-                            th:text="${participation.student.rollNumber}">
+                            th:text="${participation.student.armietPin}">
 
                             00
 

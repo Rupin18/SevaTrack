@@ -4,11 +4,22 @@
    ===================================================== */
 
 :root {
-    --maroon: #650015;
-    --maroon-dark: #35000b;
-    --orange: #f46b18;
+    --crimson: #8b1230;
+    --crimson-dark: #450817;
+    --crimson-deep: #28040d;
+    --blue: #1f5f9f;
+    --blue-dark: #123f70;
+    --blue-light: #e5f0ff;
+    --gold: #d6a84f;
+    --gold-light: #f0d58d;
     --green: #16833a;
-    --cream: #fff8ef;
+    --green-dark: #0d5c29;
+    --green-light: #e8f7ed;
+    --orange: #f46b18;
+    --orange-dark: #c84f0c;
+    --orange-light: #fff0e7;
+    --blue-soft: #eaf3ff;
+    --cream: #fffaf2;
     --dark: #1c1718;
     --text: #30282a;
     --muted: #71676a;
@@ -67,9 +78,9 @@ textarea {
     background:
         linear-gradient(
             90deg,
-            var(--maroon-dark),
-            var(--maroon),
-            var(--maroon-dark)
+            var(--crimson-dark),
+            var(--crimson),
+            var(--crimson-dark)
         );
 
     color: white;
@@ -126,7 +137,7 @@ textarea {
 
     line-height: 1.2;
 
-    color: var(--maroon);
+    color: var(--crimson);
 
     letter-spacing: 0.5px;
 }
@@ -151,11 +162,11 @@ textarea {
 
     letter-spacing: 2px;
 
-    color: var(--maroon);
+    color: var(--crimson);
 }
 
 .nss-name span {
-    color: var(--orange);
+    color: var(--gold);
 
     padding: 0 8px;
 }
@@ -165,40 +176,54 @@ textarea {
 
 .nss-badge {
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
-    gap: 10px;
-
-    color: #173b7a;
+    gap: 12px;
+    color: var(--blue-dark);
 }
 
-.nss-circle {
-    width: 70px;
-    height: 70px;
-
+.nss-logo-header {
+    width: 92px;
+    height: 92px;
+    flex: 0 0 92px;
     display: flex;
-
     align-items: center;
     justify-content: center;
-
+    padding: 4px;
     border-radius: 50%;
+    background: #ffffff;
+    border: 3px solid var(--blue);
+    box-shadow:
+        0 8px 22px rgba(31, 95, 159, 0.18),
+        0 0 0 4px rgba(22, 131, 58, 0.10);
+    overflow: hidden;
+}
 
-    background: var(--orange);
+.nss-logo-header img,
+.nss-logo-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
 
-    border: 5px solid #173b7a;
-
-    color: white;
-
-    font-size: 30px;
+.nss-badge-text {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .nss-badge strong {
     font-size: 16px;
-
     line-height: 1.05;
+    color: var(--blue-dark);
+}
+
+.nss-badge-text span {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    color: var(--green);
 }
 
 
@@ -213,7 +238,7 @@ nav {
 
     z-index: 1000;
 
-    background: var(--maroon);
+    background: var(--crimson);
 
     color: white;
 
@@ -253,9 +278,9 @@ nav {
 
 .nav-container a:hover,
 .nav-container a.active {
-    border-bottom-color: var(--orange);
+    border-bottom-color: var(--gold);
 
-    color: #ffd2a5;
+    color: #f0d58d;
 }
 
 .login-btn {
@@ -265,7 +290,7 @@ nav {
 
     border-radius: 8px;
 
-    background: var(--orange);
+    background: var(--gold);
 
     color: white !important;
 }
@@ -289,15 +314,15 @@ nav {
     background:
         radial-gradient(
             circle at 80% 40%,
-            rgba(244, 107, 24, 0.28),
+            rgba(22, 131, 58, 0.20),
             transparent 30%
         ),
 
         linear-gradient(
             110deg,
-            #180308,
-            #3d0813 55%,
-            #10271a
+            #28040d,
+            #450817 55%,
+            #123f70
         );
 }
 
@@ -320,9 +345,10 @@ nav {
     background:
         linear-gradient(
             12deg,
-            var(--green) 0 30%,
-            white 30% 58%,
-            var(--orange) 58% 82%,
+            var(--green) 0 24%,
+            var(--blue) 24% 45%,
+            white 45% 63%,
+            var(--gold) 63% 82%,
             transparent 82%
         );
 
@@ -348,7 +374,7 @@ nav {
 
 
 .hero-label {
-    color: #ffbd78;
+    color: #f0d58d;
 
     font-size: 13px;
 
@@ -371,7 +397,7 @@ nav {
 }
 
 .hero h2 span {
-    color: var(--orange);
+    color: var(--gold);
 }
 
 
@@ -441,7 +467,7 @@ nav {
 
 
 .btn.orange {
-    background: var(--orange);
+    background: var(--gold);
 
     color: white;
 }
@@ -476,7 +502,7 @@ nav {
 }
 
 .motto b {
-    color: var(--orange);
+    color: var(--gold);
 }
 
 
@@ -520,7 +546,7 @@ nav {
 }
 
 .stat-card h2 {
-    color: var(--maroon);
+    color: var(--crimson);
 
     font-size: 32px;
 }
@@ -570,7 +596,7 @@ nav {
 
     font-family: Georgia, serif;
 
-    color: var(--maroon);
+    color: var(--crimson);
 
     font-size: clamp(40px, 5vw, 65px);
 
@@ -579,7 +605,7 @@ nav {
 
 
 .section-title h2 span {
-    color: var(--orange);
+    color: var(--gold);
 }
 
 
@@ -645,7 +671,7 @@ nav {
 
 
 .about-card h3 {
-    color: var(--maroon);
+    color: var(--crimson);
 
     font-size: 24px;
 
@@ -680,8 +706,8 @@ nav {
     background:
         linear-gradient(
             145deg,
-            #180308,
-            #380a14
+            #28040d,
+            #450817
         );
 
     color: white;
@@ -697,7 +723,7 @@ nav {
 
 
 .dark .section-title small {
-    color: #ffbd78;
+    color: #f0d58d;
 }
 
 
@@ -743,7 +769,7 @@ nav {
 .activity-card:hover {
     transform: translateY(-6px);
 
-    border-color: var(--orange);
+    border-color: var(--gold);
 }
 
 
@@ -813,8 +839,8 @@ nav {
     background:
         linear-gradient(
             135deg,
-            var(--maroon),
-            var(--orange)
+            var(--crimson),
+            var(--gold)
         );
 
     color: white;
@@ -828,7 +854,7 @@ nav {
 
 
 .volunteer-card h3 {
-    color: var(--maroon);
+    color: var(--crimson);
 
     margin-bottom: 7px;
 }
@@ -865,7 +891,7 @@ nav {
 
     background: white;
 
-    border: 1px solid #f0dfcc;
+    border: 1px solid #e7dcc0;
 
     border-radius: 16px;
 
@@ -896,9 +922,9 @@ nav {
 
     border-radius: 12px;
 
-    background: #fff0df;
+    background: #fff7e6;
 
-    color: var(--maroon);
+    color: var(--crimson);
 }
 
 
@@ -917,7 +943,7 @@ nav {
 
 
 .announcement h3 {
-    color: var(--maroon);
+    color: var(--crimson);
 
     margin: 3px 0;
 }
@@ -950,14 +976,14 @@ nav {
     background:
         linear-gradient(
             90deg,
-            var(--maroon),
-            #42000e
+            var(--crimson),
+            #450817
         );
 }
 
 
 .registration small {
-    color: #ffbd78;
+    color: #f0d58d;
 
     font-weight: 900;
 
@@ -1013,7 +1039,7 @@ nav {
 
     font-size: 30px;
 
-    color: var(--maroon);
+    color: var(--crimson);
 
     margin-bottom: 20px;
 }
@@ -1053,7 +1079,7 @@ nav {
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-    border-color: var(--green);
+    border-color: var(--blue);
 }
 
 
@@ -1075,7 +1101,7 @@ footer {
 
     color: white;
 
-    background: #22050b;
+    background: #28040d;
 }
 
 
@@ -1091,7 +1117,7 @@ footer {
 footer h3 {
     margin-bottom: 8px;
 
-    color: #ffbd78;
+    color: #f0d58d;
 }
 
 
@@ -1103,7 +1129,7 @@ footer p {
 
 
 .footer-motto {
-    color: var(--orange) !important;
+    color: var(--gold) !important;
 
     font-family: Georgia, serif;
 
@@ -1139,7 +1165,8 @@ footer p {
     }
 
     .nss-badge {
-        display: none;
+        display: flex;
+        grid-column: 1 / -1;
     }
 
     .nav-container {
@@ -1278,6 +1305,63 @@ footer p {
 
 
 /* =====================================================
+   NSS IDENTITY LOGO PANEL
+   ===================================================== */
+
+.identity-logo-panel {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 28px;
+    border-radius: 24px;
+    background: linear-gradient(145deg, #eef6ff 0%, #ffffff 55%, #edf9f0 100%);
+    border: 1px solid rgba(31, 95, 159, 0.14);
+    box-shadow:
+        0 15px 40px rgba(31, 95, 159, 0.08),
+        inset 0 0 0 1px rgba(214, 168, 79, 0.12);
+    text-align: center;
+}
+
+.identity-logo-frame {
+    width: min(250px, 75%);
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    padding: 8px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 5px solid var(--blue);
+    box-shadow:
+        0 14px 35px rgba(31, 95, 159, 0.16),
+        0 0 0 6px rgba(22, 131, 58, 0.08);
+}
+
+.identity-nss-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.identity-logo-panel > span {
+    color: var(--blue-dark);
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.identity-logo-panel > small {
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+
+/* =====================================================
    ARMIET NSS IDENTITY
    ===================================================== */
 
@@ -1287,9 +1371,9 @@ footer p {
     display: grid;
 
     grid-template-columns:
-        1fr 1.2fr;
+        0.72fr 1.15fr 1.25fr;
 
-    gap: 70px;
+    gap: 38px;
 
     align-items: center;
 
@@ -1298,7 +1382,7 @@ footer p {
             135deg,
             #fffaf4,
             #ffffff 55%,
-            #f5fff8
+            #f3f8ff
         );
 
     border-bottom: 1px solid var(--border);
@@ -1314,7 +1398,7 @@ footer p {
 .identity-label {
     margin-bottom: 15px;
 
-    color: var(--green);
+    color: var(--blue);
 
     font-size: 12px;
 
@@ -1326,7 +1410,7 @@ footer p {
 .identity-content h2 {
     margin-bottom: 20px;
 
-    color: var(--maroon);
+    color: var(--crimson);
 
     font-family: Georgia, serif;
 
@@ -1336,7 +1420,7 @@ footer p {
 }
 
 .identity-content h2 span {
-    color: var(--orange);
+    color: var(--gold);
 }
 
 .identity-content > p {
@@ -1361,7 +1445,7 @@ footer p {
 
     padding: 20px;
 
-    border-left: 5px solid var(--orange);
+    border-left: 5px solid var(--gold);
 
     border-radius: 0 14px 14px 0;
 
@@ -1383,7 +1467,7 @@ footer p {
 
     border-radius: 50%;
 
-    background: var(--orange);
+    background: var(--gold);
 
     color: white;
 
@@ -1401,7 +1485,7 @@ footer p {
 .nss-motto h3 {
     margin: 3px 0;
 
-    color: var(--maroon);
+    color: var(--crimson);
 
     font-family: Georgia, serif;
 
@@ -1446,7 +1530,7 @@ footer p {
 .identity-card:hover {
     transform: translateY(-7px);
 
-    border-color: var(--orange);
+    border-color: var(--gold);
 
     box-shadow:
         0 15px 40px rgba(60, 5, 18, 0.10);
@@ -1467,8 +1551,8 @@ footer p {
     background:
         linear-gradient(
             135deg,
-            #fff0df,
-            #fff8ef
+            #fff7e6,
+            #fffaf2
         );
 
     font-size: 27px;
@@ -1477,7 +1561,7 @@ footer p {
 .identity-card h3 {
     margin-bottom: 8px;
 
-    color: var(--maroon);
+    color: var(--crimson);
 
     font-size: 20px;
 }
@@ -1495,12 +1579,43 @@ footer p {
    IDENTITY RESPONSIVE
    ===================================================== */
 
+@media (max-width: 1100px) {
+
+    .college-header {
+        grid-template-columns: 220px 1fr;
+    }
+
+    .nss-badge {
+        grid-column: 1 / -1;
+        padding-top: 5px;
+    }
+
+    .nss-identity {
+        grid-template-columns: 1fr 1fr;
+        gap: 35px;
+    }
+
+    .identity-logo-panel {
+        grid-column: 1 / -1;
+        min-height: auto;
+        padding: 35px;
+    }
+
+    .identity-logo-frame {
+        width: 190px;
+    }
+
+}
+
 @media (max-width: 900px) {
 
     .nss-identity {
         grid-template-columns: 1fr;
+        gap: 35px;
+    }
 
-        gap: 45px;
+    .identity-logo-panel {
+        grid-column: auto;
     }
 
 }
@@ -1527,7 +1642,7 @@ footer p {
     min-height: 100vh;
     background:
         radial-gradient(circle at top right, rgba(255, 107, 0, 0.12), transparent 35%),
-        linear-gradient(135deg, #fffaf7 0%, #ffffff 55%, #fff5ed 100%);
+        linear-gradient(135deg, #f8faff 0%, #ffffff 55%, #f5f8ff 100%);
     padding: 60px 20px;
     box-sizing: border-box;
 }
@@ -1560,7 +1675,7 @@ footer p {
 
 .registration-header h1 {
     margin: 0;
-    color: #720019;
+    color: #8b1230;
     font-size: 34px;
     font-weight: 800;
 }
@@ -1577,7 +1692,7 @@ footer p {
 
 .registration-title span {
     display: inline-block;
-    color: #ff6b00;
+    color: #d6a84f;
     font-size: 13px;
     font-weight: 800;
     letter-spacing: 3px;
@@ -1586,7 +1701,7 @@ footer p {
 
 .registration-title h2 {
     margin: 0 0 10px;
-    color: #720019;
+    color: #8b1230;
     font-size: 42px;
     font-weight: 800;
 }
@@ -1617,7 +1732,7 @@ footer p {
 
 .form-group label {
     margin-bottom: 8px;
-    color: #4b0012;
+    color: #450817;
     font-size: 14px;
     font-weight: 700;
 }
@@ -1638,7 +1753,7 @@ footer p {
 
 .form-group input:focus,
 .form-group select:focus {
-    border-color: #ff6b00;
+    border-color: #d6a84f;
     box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.12);
 }
 
@@ -1648,7 +1763,7 @@ footer p {
     padding: 16px 25px;
     border: none;
     border-radius: 10px;
-    background: linear-gradient(135deg, #ff6b00, #f45100);
+    background: linear-gradient(135deg, #d6a84f, #b9892f);
     color: white;
     font-size: 16px;
     font-weight: 800;
@@ -1665,9 +1780,9 @@ footer p {
     margin-bottom: 25px;
     padding: 15px 18px;
     border-radius: 10px;
-    background: #eaf8ef;
-    border: 1px solid #a9ddb9;
-    color: #146c2e;
+    background: #e5f0ff;
+    border: 1px solid #b7d3f2;
+    color: #123f70;
     font-weight: 600;
 }
 
@@ -1677,7 +1792,7 @@ footer p {
     border-radius: 10px;
     background: #fff0f0;
     border: 1px solid #efb0b0;
-    color: #a00020;
+    color: #8b1230;
     font-weight: 600;
 }
 
@@ -1685,13 +1800,13 @@ footer p {
     display: block;
     margin-top: 25px;
     text-align: center;
-    color: #720019;
+    color: #8b1230;
     font-weight: 700;
     text-decoration: none;
 }
 
 .back-home:hover {
-    color: #ff6b00;
+    color: #d6a84f;
 }
 
 
@@ -1739,7 +1854,7 @@ footer p {
     min-height: 100vh;
     background:
         radial-gradient(circle at top right, rgba(255, 107, 0, 0.12), transparent 35%),
-        linear-gradient(135deg, #fffaf5 0%, #ffffff 55%, #fff4ea 100%);
+        linear-gradient(135deg, #f8faff 0%, #ffffff 55%, #f5f8ff 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1772,14 +1887,14 @@ footer p {
 
 .login-brand h1 {
     margin: 0;
-    color: #780019;
+    color: #8b1230;
     font-size: 42px;
     font-weight: 800;
     letter-spacing: -1px;
 }
 
 .login-brand h1 span {
-    color: #ff6500;
+    color: #d6a84f;
 }
 
 .login-subtitle {
@@ -1790,19 +1905,19 @@ footer p {
 
 .login-divider {
     height: 1px;
-    background: #eadbdb;
+    background: #dce5ef;
     margin: 30px 0;
 }
 
 .login-heading small {
-    color: #ff6500;
+    color: #d6a84f;
     font-weight: 800;
     letter-spacing: 4px;
     font-size: 12px;
 }
 
 .login-heading h2 {
-    color: #780019;
+    color: #8b1230;
     font-size: 38px;
     margin: 14px 0 8px;
     font-weight: 800;
@@ -1816,8 +1931,8 @@ footer p {
 
 .login-error {
     background: #fff0f0;
-    color: #a00020;
-    border: 1px solid #e6a5b0;
+    color: #8b1230;
+    border: 1px solid #d7a8b8;
     border-radius: 10px;
     padding: 14px 16px;
     margin-bottom: 22px;
@@ -1831,7 +1946,7 @@ footer p {
 }
 
 .login-card label {
-    color: #650018;
+    color: #450817;
     font-weight: 700;
     margin-top: 8px;
 }
@@ -1850,7 +1965,7 @@ footer p {
 }
 
 .login-card input:focus {
-    border-color: #ff6500;
+    border-color: #d6a84f;
     box-shadow: 0 0 0 3px rgba(255, 101, 0, 0.12);
 }
 
@@ -1860,7 +1975,7 @@ footer p {
     margin-top: 18px;
     padding: 15px 20px;
     border-radius: 10px;
-    background: #ff6500;
+    background: #d6a84f;
     color: #ffffff;
     font-size: 16px;
     font-weight: 700;
@@ -1869,7 +1984,7 @@ footer p {
 }
 
 .login-submit:hover {
-    background: #e95500;
+    background: #b9892f;
     transform: translateY(-1px);
     box-shadow: 0 8px 20px rgba(255, 101, 0, 0.22);
 }
@@ -1883,13 +1998,13 @@ footer p {
 }
 
 .login-footer a {
-    color: #780019;
+    color: #8b1230;
     font-weight: 700;
     text-decoration: none;
 }
 
 .login-footer a:hover {
-    color: #ff6500;
+    color: #d6a84f;
 }
 
 /* Mobile */
@@ -1925,7 +2040,7 @@ footer p {
     padding: 15px 20px;
     margin-top: 18px;
 
-    background: #ff6500 !important;
+    background: #d6a84f !important;
     color: #ffffff !important;
 
     border: none !important;
@@ -1941,6 +2056,241 @@ footer p {
 }
 
 .login-card .login-submit:hover {
-    background: #e95500 !important;
+    background: #b9892f !important;
     transform: translateY(-1px);
 }
+
+/* =====================================================
+   NSS GREEN ACCENTS
+   ===================================================== */
+
+.stat-card:nth-child(2) h2 { color: var(--green); }
+.stat-card:nth-child(4) h2 { color: var(--blue); }
+
+.activity-card:nth-child(2),
+.activity-card:nth-child(4) { border-top-color: var(--green); }
+
+.activity-card:nth-child(2) .activity-icon,
+.activity-card:nth-child(4) .activity-icon {
+    background: var(--green-light);
+    color: var(--green);
+}
+
+.volunteer-card:nth-child(even) { border-left-color: var(--green); }
+
+.announcement-card:nth-child(2) { border-left-color: var(--green); }
+
+.contact-item .icon.green,
+.success,
+.status-success { color: var(--green); }
+
+.green-accent { color: var(--green) !important; }
+
+@media (max-width: 900px) {
+    .hero::after { opacity: 0.65; }
+}
+
+
+/* =========================================================
+   NSS GREEN + LOGO ENHANCEMENTS
+   ========================================================= */
+
+.hero-nss-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    padding: 8px 14px 8px 8px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.20);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.hero-nss-logo img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    border-radius: 50%;
+    background: #fff;
+    padding: 3px;
+    border: 2px solid var(--green);
+}
+
+.hero-nss-logo span {
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+/* Make green a visible part of the homepage identity */
+.hero-buttons .btn.green {
+    background: linear-gradient(135deg, var(--green), var(--green-dark));
+    color: #ffffff;
+    border-color: var(--green);
+    box-shadow: 0 12px 28px rgba(22, 131, 58, 0.24);
+}
+
+.hero-buttons .btn.green:hover {
+    background: linear-gradient(135deg, #1b9b47, var(--green));
+    transform: translateY(-2px);
+}
+
+.identity-card:nth-child(2) {
+    border-top: 4px solid var(--green);
+}
+
+.identity-card:nth-child(2) .identity-icon {
+    background: var(--green-light);
+    color: var(--green);
+}
+
+.activity-card:nth-child(2) {
+    border-top-color: var(--green);
+}
+
+.registration {
+    border-left: 6px solid var(--green);
+}
+
+.registration .btn.orange:hover {
+    box-shadow: 0 12px 28px rgba(22, 131, 58, 0.20);
+}
+
+.nss-motto .motto-symbol {
+    color: var(--green);
+    border-color: rgba(22, 131, 58, 0.25);
+    background: var(--green-light);
+}
+
+@media (max-width: 760px) {
+    .nss-logo-header {
+        width: 60px;
+        height: 60px;
+    }
+
+    .nss-badge strong {
+        display: none;
+    }
+
+    .hero-nss-logo {
+        margin-bottom: 14px;
+    }
+}
+
+/* =========================================================
+   NSS ORANGE ACCENTS — FIVE-COLOR SEVATRACK IDENTITY
+   Crimson remains the dominant brand color.
+   Orange is used for energy, activities, notices and highlights.
+   ========================================================= */
+
+.orange-accent {
+    color: var(--orange) !important;
+}
+
+.orange-bg {
+    background: var(--orange-light) !important;
+    color: var(--orange-dark) !important;
+}
+
+.btn.orange,
+button.orange,
+a.orange {
+    background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+    color: var(--white);
+    border-color: var(--orange);
+    box-shadow: 0 12px 28px rgba(244, 107, 24, 0.22);
+}
+
+.btn.orange:hover,
+button.orange:hover,
+a.orange:hover {
+    background: linear-gradient(135deg, #ff7a24, var(--orange));
+    transform: translateY(-2px);
+    box-shadow: 0 15px 32px rgba(244, 107, 24, 0.28);
+}
+
+/* Five-color hero ribbon: green + blue + white + gold + orange */
+.hero::after {
+    background:
+        linear-gradient(
+            12deg,
+            var(--green) 0 20%,
+            var(--blue) 20% 38%,
+            white 38% 54%,
+            var(--gold) 54% 70%,
+            var(--orange) 70% 84%,
+            transparent 84%
+        );
+}
+
+/* Orange appears in the identity area without overpowering crimson */
+.identity-card:nth-child(3) {
+    border-top: 4px solid var(--orange);
+}
+
+.identity-card:nth-child(3) .identity-icon {
+    background: var(--orange-light);
+    color: var(--orange);
+}
+
+.identity-card:nth-child(3):hover {
+    border-color: var(--orange);
+}
+
+/* Activities rotate through the NSS accent palette */
+.activity-card:nth-child(3n) {
+    border-top-color: var(--orange);
+}
+
+.activity-card:nth-child(3n) .activity-icon {
+    background: var(--orange-light);
+    color: var(--orange);
+}
+
+/* Announcements / notices use orange as an attention accent */
+.announcement-card:nth-child(3n),
+.notice-card:nth-child(3n) {
+    border-left-color: var(--orange);
+}
+
+/* Registration keeps green identity while gaining a warm orange highlight */
+.registration {
+    background:
+        radial-gradient(
+            circle at 92% 12%,
+            rgba(244, 107, 24, 0.10),
+            transparent 24%
+        ),
+        var(--white);
+}
+
+/* Useful semantic accent for pending/event states */
+.pending,
+.status-pending,
+.event-accent {
+    color: var(--orange);
+}
+
+.pending-badge,
+.status-pending-badge {
+    background: var(--orange-light);
+    color: var(--orange-dark);
+    border: 1px solid rgba(244, 107, 24, 0.22);
+}
+
+/* Small orange detail on the NSS logo treatment */
+.nss-logo-header {
+    box-shadow:
+        0 8px 22px rgba(22, 131, 58, 0.18),
+        0 0 0 4px rgba(244, 107, 24, 0.06);
+}
+
+/* Keep orange subtle on mobile */
+@media (max-width: 760px) {
+    .hero::after {
+        opacity: 0.72;
+    }
+}
+

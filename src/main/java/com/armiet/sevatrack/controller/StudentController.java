@@ -2,6 +2,7 @@ package com.armiet.sevatrack.controller;
 
 import java.util.List;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,9 @@ public class StudentController {
     private final StudentRepository studentRepository;
     private final ParticipationRepository participationRepository;
 
+    private final BCryptPasswordEncoder passwordEncoder =
+            new BCryptPasswordEncoder();
+
     public StudentController(
             StudentRepository studentRepository,
             ParticipationRepository participationRepository) {
@@ -31,6 +35,11 @@ public class StudentController {
         this.studentRepository = studentRepository;
         this.participationRepository = participationRepository;
     }
+
+
+    /* =========================================================
+       STUDENT REGISTRATION
+       ========================================================= */
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
@@ -43,31 +52,56 @@ public class StudentController {
         return "register";
     }
 
+
     @PostMapping("/register")
     public String registerStudent(
             @ModelAttribute("student") Student student,
             Model model) {
 
-        if (studentRepository.existsByRollNumber(
-                student.getRollNumber())) {
+        /*
+         * Check whether the ARMIET PIN is already registered.
+         */
+        if (studentRepository.existsByArmietPin(
+                student.getArmietPin())) {
 
             model.addAttribute(
                     "error",
-                    "A student with this roll number is already registered."
+                    "A student with this ARMIET PIN is already registered."
             );
 
             return "register";
         }
 
+
+        /*
+         * Encode the password before saving it.
+         *
+         * The actual password will NOT be stored
+         * directly in the database.
+         */
+        student.setPassword(
+                passwordEncoder.encode(
+                        student.getPassword()
+                )
+        );
+
+
         studentRepository.save(student);
+
 
         model.addAttribute(
                 "success",
                 "Registration successful! Welcome to ARMIET NSS."
         );
 
+
         return "register";
     }
+
+
+    /* =========================================================
+       VOLUNTEER LOGIN
+       ========================================================= */
 
     @GetMapping("/login")
     public String showLoginPage() {
@@ -75,37 +109,57 @@ public class StudentController {
         return "login";
     }
 
+
     @PostMapping("/login")
     public String volunteerLogin(
-            @RequestParam("rollNumber") String rollNumber,
-            @RequestParam("email") String email,
+            @RequestParam("armietPin") String armietPin,
+            @RequestParam("password") String password,
             HttpSession session,
             Model model) {
 
+
         Student student = studentRepository
-                .findByRollNumber(rollNumber)
+                .findByArmietPin(armietPin)
                 .orElse(null);
 
+
+        /*
+         * Check:
+         *
+         * 1. Student exists
+         * 2. Password matches the encrypted password
+         */
         if (student != null &&
-                student.getEmail() != null &&
-                student.getEmail().equalsIgnoreCase(email)) {
+                student.getPassword() != null &&
+                passwordEncoder.matches(
+                        password,
+                        student.getPassword())) {
+
 
             session.setAttribute(
                     "studentId",
                     student.getId()
             );
 
+
             return "redirect:/dashboard?studentId="
                     + student.getId();
         }
 
+
         model.addAttribute(
                 "error",
-                "Invalid Roll Number or Email."
+                "Invalid ARMIET PIN or password."
         );
+
 
         return "login";
     }
+
+
+    /* =========================================================
+       VOLUNTEER DASHBOARD
+       ========================================================= */
 
     @GetMapping("/dashboard")
     public String showDashboard(
@@ -114,11 +168,9 @@ public class StudentController {
             HttpServletResponse response,
             Model model) {
 
+
         /*
          * Prevent the browser from caching the dashboard.
-         * This is important after logout because otherwise
-         * the browser may show an old cached dashboard
-         * when the user presses Back.
          */
         response.setHeader(
                 "Cache-Control",
@@ -135,8 +187,10 @@ public class StudentController {
                 0
         );
 
+
         Long loggedInStudentId =
                 (Long) session.getAttribute("studentId");
+
 
         if (loggedInStudentId == null ||
                 !loggedInStudentId.equals(studentId)) {
@@ -144,28 +198,38 @@ public class StudentController {
             return "redirect:/login";
         }
 
+
         Student student = studentRepository
                 .findById(studentId)
                 .orElseThrow();
+
 
         model.addAttribute(
                 "student",
                 student
         );
 
+
         List<Participation> participations =
                 participationRepository
                         .findByStudentId(student.getId());
 
+
         int totalServiceHours = 0;
 
-        for (Participation participation : participations) {
+
+        for (Participation participation :
+                participations) {
+
 
             if (participation.getStatus() ==
                     ParticipationStatus.APPROVED) {
 
+
                 if (participation.getActivity() != null &&
-                        participation.getActivity().getServiceHours() != null) {
+                        participation.getActivity()
+                                .getServiceHours() != null) {
+
 
                     totalServiceHours +=
                             participation.getActivity()
@@ -174,26 +238,36 @@ public class StudentController {
             }
         }
 
+
         model.addAttribute(
                 "totalServiceHours",
                 totalServiceHours
         );
 
+
         return "dashboard";
     }
+
+
+    /* =========================================================
+       VOLUNTEER LOGOUT
+       ========================================================= */
 
     @GetMapping("/logout")
     public String volunteerLogout(
             HttpSession session,
             HttpServletResponse response) {
 
+
         /*
          * Remove the logged-in volunteer from the session.
          */
         session.removeAttribute("studentId");
 
+
         /*
-         * Tell the browser not to keep the logout response cached.
+         * Prevent the browser from keeping the
+         * logout response cached.
          */
         response.setHeader(
                 "Cache-Control",
@@ -209,6 +283,7 @@ public class StudentController {
                 "Expires",
                 0
         );
+
 
         return "redirect:/login";
     }

@@ -17,18 +17,19 @@ public class Student {
 
     private String fullName;
 
-    @Column(unique = true, nullable = false)
-    private String rollNumber;
+    @Column(name = "armiet_pin", unique = true, nullable = false)
+    private String armietPin;
 
     private String department;
 
     private String year;
 
-    private String division;
-
     private String email;
 
     private String mobileNumber;
+
+    @Column(nullable = false)
+    private String password;
 
     public Student() {
     }
@@ -45,12 +46,12 @@ public class Student {
         this.fullName = fullName;
     }
 
-    public String getRollNumber() {
-        return rollNumber;
+    public String getArmietPin() {
+        return armietPin;
     }
 
-    public void setRollNumber(String rollNumber) {
-        this.rollNumber = rollNumber;
+    public void setArmietPin(String armietPin) {
+        this.armietPin = armietPin;
     }
 
     public String getDepartment() {
@@ -69,14 +70,6 @@ public class Student {
         this.year = year;
     }
 
-    public String getDivision() {
-        return division;
-    }
-
-    public void setDivision(String division) {
-        this.division = division;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -91,5 +84,13 @@ public class Student {
 
     public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

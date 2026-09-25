@@ -9,236 +9,802 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Student Registration | Seva Track</title>
+    <title>NSS Volunteer Registration | Seva Track</title>
 
     <link rel="stylesheet"
           th:href="@{/css/style.css}">
 
+
+    <style>
+
+        /* =========================================================
+           REGISTRATION PAGE
+           ========================================================= */
+
+        body {
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(139, 18, 48, 0.10),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(214, 168, 79, 0.12),
+                    transparent 25%
+                ),
+                linear-gradient(
+                    135deg,
+                    #fbf8f7,
+                    #f5eef0
+                );
+        }
+
+
+        .registration-page {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 35px 20px;
+        }
+
+
+        .registration-card {
+
+            width: min(760px, 100%);
+
+            padding: 35px;
+
+            background:
+                rgba(255, 255, 255, 0.94);
+
+            border:
+                1px solid
+                rgba(92, 20, 40, 0.10);
+
+            border-radius: 28px;
+
+            box-shadow:
+                0 25px 70px
+                rgba(48, 5, 18, 0.12);
+
+            backdrop-filter: blur(15px);
+        }
+
+
+        /* =========================================================
+           HEADER
+           ========================================================= */
+
+        .registration-header {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 16px;
+
+            padding-bottom: 24px;
+
+            margin-bottom: 25px;
+
+            border-bottom:
+                1px solid
+                rgba(92, 20, 40, 0.08);
+        }
+
+
+        .registration-header img {
+
+            width: 60px;
+            height: 60px;
+
+            object-fit: contain;
+
+            padding: 5px;
+
+            background: white;
+
+            border-radius: 17px;
+
+            box-shadow:
+                0 8px 20px
+                rgba(48, 5, 18, 0.10);
+        }
+
+
+        .registration-header h1 {
+
+            margin: 0;
+
+            color: #8b1230;
+
+            font-size: 25px;
+
+            letter-spacing: -0.7px;
+        }
+
+
+        .registration-header p {
+
+            margin: 4px 0 0;
+
+            color: #74686c;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.7px;
+
+            text-transform: uppercase;
+        }
+
+
+        /* =========================================================
+           TITLE
+           ========================================================= */
+
+        .registration-title {
+
+            margin-bottom: 25px;
+        }
+
+
+        .registration-title span {
+
+            color: #8b1230;
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            letter-spacing: 1.3px;
+        }
+
+
+        .registration-title h2 {
+
+            margin: 7px 0 7px;
+
+            color: #28040d;
+
+            font-size: 29px;
+
+            letter-spacing: -1px;
+        }
+
+
+        .registration-title p {
+
+            max-width: 600px;
+
+            margin: 0;
+
+            color: #74686c;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================================================
+           FORM
+           ========================================================= */
+
+        .form-row {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 15px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .form-group {
+
+            margin-bottom: 15px;
+        }
+
+
+        .form-row .form-group {
+
+            margin-bottom: 0;
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #3b2b30;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: 0.3px;
+        }
+
+
+        .form-group input,
+        .form-group select {
+
+            width: 100%;
+
+            padding: 13px 14px;
+
+            color: #24191d;
+
+            background: #fbf8f9;
+
+            border:
+                1px solid
+                rgba(92, 20, 40, 0.12);
+
+            border-radius: 12px;
+
+            outline: none;
+
+            font-family: inherit;
+
+            font-size: 12px;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus {
+
+            background: white;
+
+            border-color:
+                rgba(139, 18, 48, 0.45);
+
+            box-shadow:
+                0 0 0 4px
+                rgba(139, 18, 48, 0.07);
+        }
+
+
+        .form-group input::placeholder {
+
+            color: #a79a9f;
+        }
+
+
+        /* =========================================================
+           PASSWORD NOTE
+           ========================================================= */
+
+        .password-note {
+
+            margin-top: -5px;
+
+            margin-bottom: 15px;
+
+            color: #8b7c81;
+
+            font-size: 10px;
+        }
+
+
+        /* =========================================================
+           MESSAGES
+           ========================================================= */
+
+        .success-message,
+        .error-message {
+
+            margin-bottom: 18px;
+
+            padding: 13px 15px;
+
+            border-radius: 12px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        .success-message {
+
+            color: #176b2a;
+
+            background: #edf9ef;
+
+            border:
+                1px solid
+                #b8e1bf;
+        }
+
+
+        .error-message {
+
+            color: #9a3d00;
+
+            background: #fff5ec;
+
+            border:
+                1px solid
+                #f2c5a2;
+        }
+
+
+        /* =========================================================
+           REGISTER BUTTON
+           ========================================================= */
+
+        .register-button {
+
+            width: 100%;
+
+            padding: 14px 18px;
+
+            margin-top: 5px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #8b1230,
+                    #4a0718
+                );
+
+            border: none;
+
+            border-radius: 13px;
+
+            font-family: inherit;
+
+            font-size: 12px;
+
+            font-weight: 850;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 12px 25px
+                rgba(139, 18, 48, 0.18);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+
+        .register-button:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 17px 32px
+                rgba(139, 18, 48, 0.25);
+        }
+
+
+        /* =========================================================
+           BACK HOME
+           ========================================================= */
+
+        .back-home {
+
+            display: block;
+
+            margin-top: 20px;
+
+            color: #8b1230;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            font-size: 11px;
+
+            font-weight: 800;
+        }
+
+
+        .back-home:hover {
+
+            text-decoration: underline;
+        }
+
+
+        /* =========================================================
+           MOBILE
+           ========================================================= */
+
+        @media (max-width: 650px) {
+
+            .registration-page {
+
+                padding: 18px 12px;
+            }
+
+
+            .registration-card {
+
+                padding: 24px 18px;
+
+                border-radius: 22px;
+            }
+
+
+            .form-row {
+
+                grid-template-columns: 1fr;
+
+                gap: 0;
+            }
+
+
+            .form-row .form-group {
+
+                margin-bottom: 15px;
+            }
+
+
+            .registration-header img {
+
+                width: 52px;
+                height: 52px;
+            }
+
+
+            .registration-title h2 {
+
+                font-size: 25px;
+            }
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-    <div class="registration-page">
 
-        <div class="registration-card">
-
-            <div class="registration-header">
-
-                <img src="/images/armiet-logo.png"
-                     alt="ARMIET Logo">
-
-                <div>
-                    <h1>Seva Track</h1>
-
-                    <p>
-                        ARMIET National Service Scheme
-                    </p>
-                </div>
-
-            </div>
+<div class="registration-page">
 
 
-            <div class="registration-title">
+    <div class="registration-card">
 
-                <span>ARMIET • NSS CELL</span>
 
-                <h2>Student Registration</h2>
+        <!-- =====================================================
+             HEADER
+             ===================================================== -->
+
+        <div class="registration-header">
+
+
+            <img
+                src="/images/nss-logo.png"
+                alt="NSS Logo">
+
+
+            <div>
+
+                <h1>
+                    Seva Track
+                </h1>
 
                 <p>
-                    Register as an ARMIET NSS volunteer
-                    and participate in community service
-                    activities.
+                    ARMIET National Service Scheme
                 </p>
 
             </div>
 
 
-            <!-- SUCCESS MESSAGE -->
-
-            <div class="success-message"
-                 th:if="${success}"
-                 th:text="${success}">
-            </div>
+        </div>
 
 
-            <!-- ERROR MESSAGE -->
 
-            <div class="error-message"
-                 th:if="${error}"
-                 th:text="${error}">
-            </div>
+        <!-- =====================================================
+             TITLE
+             ===================================================== -->
 
+        <div class="registration-title">
 
-            <form th:action="@{/register}"
-                  th:object="${student}"
-                  method="post">
+            <span>
+                ARMIET • NSS CELL
+            </span>
 
+            <h2>
+                Volunteer Registration
+            </h2>
 
-                <div class="form-row">
+            <p>
 
-                    <div class="form-group">
+                Create your ARMIET NSS volunteer account
+                to participate in community-service activities
+                and track your service contribution.
 
-                        <label>Full Name</label>
+            </p>
 
-                        <input type="text"
-                               th:field="*{fullName}"
-                               placeholder="Enter your full name"
-                               required>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>Roll Number</label>
-
-                        <input type="text"
-                               th:field="*{rollNumber}"
-                               placeholder="Enter roll number"
-                               required>
-
-                    </div>
-
-                </div>
+        </div>
 
 
-                <div class="form-row">
 
-                    <div class="form-group">
+        <!-- =====================================================
+             SUCCESS
+             ===================================================== -->
 
-                        <label>Department</label>
-
-                        <select th:field="*{department}"
-                                required>
-
-                            <option value="">
-                                Select Department
-                            </option>
-
-                            <option value="CSE">
-                                Computer Engineering
-                            </option>
-
-                            <option value="CSE AIML">
-                                CSE (AI & ML)
-                            </option>
-
-                            <option value="IT">
-                                Information Technology
-                            </option>
-
-                            <option value="Mechanical">
-                                Mechanical Engineering
-                            </option>
-
-                            <option value="Civil">
-                                Civil Engineering
-                            </option>
-
-                            <option value="Other">
-                                Other
-                            </option>
-
-                        </select>
-
-                    </div>
+        <div
+            class="success-message"
+            th:if="${success}"
+            th:text="${success}">
+        </div>
 
 
-                    <div class="form-group">
 
-                        <label>Year</label>
+        <!-- =====================================================
+             ERROR
+             ===================================================== -->
 
-                        <select th:field="*{year}"
-                                required>
-
-                            <option value="">
-                                Select Year
-                            </option>
-
-                            <option value="FE">
-                                First Year (FE)
-                            </option>
-
-                            <option value="SE">
-                                Second Year (SE)
-                            </option>
-
-                            <option value="TE">
-                                Third Year (TE)
-                            </option>
-
-                            <option value="BE">
-                                Final Year (BE)
-                            </option>
-
-                        </select>
-
-                    </div>
-
-                </div>
+        <div
+            class="error-message"
+            th:if="${error}"
+            th:text="${error}">
+        </div>
 
 
-                <div class="form-row">
 
-                    <div class="form-group">
+        <!-- =====================================================
+             REGISTRATION FORM
+             ===================================================== -->
 
-                        <label>Division</label>
-
-                        <input type="text"
-                               th:field="*{division}"
-                               placeholder="Example: A"
-                               required>
-
-                    </div>
+        <form
+            th:action="@{/register}"
+            th:object="${student}"
+            method="post">
 
 
-                    <div class="form-group">
+            <!-- FULL NAME + ARMIET PIN -->
 
-                        <label>Mobile Number</label>
+            <div class="form-row">
 
-                        <input type="tel"
-                               th:field="*{mobileNumber}"
-                               placeholder="Enter mobile number"
-                               required>
 
-                    </div>
+                <div class="form-group">
+
+                    <label>
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        th:field="*{fullName}"
+                        placeholder="Enter your full name"
+                        required>
 
                 </div>
 
 
                 <div class="form-group">
 
-                    <label>Email Address</label>
+                    <label>
+                        ARMIET PIN
+                    </label>
 
-                    <input type="email"
-                           th:field="*{email}"
-                           placeholder="Enter email address"
-                           required>
+                    <input
+                        type="text"
+                        th:field="*{armietPin}"
+                        placeholder="Enter your ARMIET PIN"
+                        autocomplete="username"
+                        required>
 
                 </div>
 
 
-                <button type="submit"
-                        class="register-button">
-
-                    Register as NSS Volunteer
-
-                </button>
+            </div>
 
 
-            </form>
+
+            <!-- DEPARTMENT + YEAR -->
+
+            <div class="form-row">
 
 
-            <a href="/"
-               class="back-home">
+                <div class="form-group">
 
-                ← Back to Seva Track
+                    <label>
+                        Department
+                    </label>
 
-            </a>
+                    <select
+                        th:field="*{department}"
+                        required>
 
-        </div>
+                        <option value="">
+                            Select Department
+                        </option>
+
+                        <option value="CSE">
+                            Computer Engineering
+                        </option>
+
+                        <option value="CSE AIML">
+                            CSE (AI & ML)
+                        </option>
+
+                        <option value="IT">
+                            Information Technology
+                        </option>
+
+                        <option value="Mechanical">
+                            Mechanical Engineering
+                        </option>
+
+                        <option value="Civil">
+                            Civil Engineering
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Year
+                    </label>
+
+                    <select
+                        th:field="*{year}"
+                        required>
+
+                        <option value="">
+                            Select Year
+                        </option>
+
+                        <option value="FE">
+                            First Year (FE)
+                        </option>
+
+                        <option value="SE">
+                            Second Year (SE)
+                        </option>
+
+                        <option value="TE">
+                            Third Year (TE)
+                        </option>
+
+                        <option value="BE">
+                            Final Year (BE)
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- EMAIL + MOBILE -->
+
+            <div class="form-row">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        th:field="*{email}"
+                        placeholder="Enter email address"
+                        autocomplete="email"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Mobile Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        th:field="*{mobileNumber}"
+                        placeholder="Enter mobile number"
+                        autocomplete="tel"
+                        required>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+
+                <label>
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    th:field="*{password}"
+                    placeholder="Create your password"
+                    autocomplete="new-password"
+                    minlength="6"
+                    required>
+
+            </div>
+
+
+            <div class="password-note">
+
+                Password must contain at least 6 characters.
+
+            </div>
+
+
+
+            <!-- SUBMIT -->
+
+            <button
+                type="submit"
+                class="register-button">
+
+                Create NSS Volunteer Account
+
+            </button>
+
+
+        </form>
+
+
+
+        <!-- BACK -->
+
+        <a
+            href="/"
+            class="back-home">
+
+            ← Back to Seva Track
+
+        </a>
+
 
     </div>
+
+</div>
+
 
 </body>
 
