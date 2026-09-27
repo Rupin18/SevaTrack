@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -40,7 +41,12 @@ public class AdminController {
     }
 
     @GetMapping("/admin-dashboard")
-    public String showAdminDashboard(HttpSession session) {
+    public String showAdminDashboard(
+            HttpSession session,
+            HttpServletResponse response) {
+
+        // Prevent browser/proxy caching of the admin dashboard
+        disableCaching(response);
 
         Boolean adminLoggedIn =
                 (Boolean) session.getAttribute("adminLoggedIn");
@@ -53,11 +59,38 @@ public class AdminController {
     }
 
     @GetMapping("/admin/logout")
-    public String adminLogout(HttpSession session) {
+    public String adminLogout(
+            HttpSession session,
+            HttpServletResponse response) {
 
-        // Remove the admin login session
-        session.removeAttribute("adminLoggedIn");
+        // Completely destroy the current admin session
+        session.invalidate();
+
+        // Prevent the logout response from being cached
+        disableCaching(response);
 
         return "redirect:/admin/login";
+    }
+
+    /**
+     * Prevent the browser and intermediate proxies
+     * from storing protected pages in cache.
+     */
+    private void disableCaching(HttpServletResponse response) {
+
+        response.setHeader(
+                "Cache-Control",
+                "no-store, no-cache, must-revalidate, max-age=0"
+        );
+
+        response.setHeader(
+                "Pragma",
+                "no-cache"
+        );
+
+        response.setDateHeader(
+                "Expires",
+                0
+        );
     }
 }

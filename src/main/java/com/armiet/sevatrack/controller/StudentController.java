@@ -168,24 +168,11 @@ public class StudentController {
             HttpServletResponse response,
             Model model) {
 
-
         /*
-         * Prevent the browser from caching the dashboard.
+         * Prevent the browser and intermediate proxies
+         * from storing the dashboard.
          */
-        response.setHeader(
-                "Cache-Control",
-                "no-cache, no-store, must-revalidate"
-        );
-
-        response.setHeader(
-                "Pragma",
-                "no-cache"
-        );
-
-        response.setDateHeader(
-                "Expires",
-                0
-        );
+        disableCaching(response);
 
 
         Long loggedInStudentId =
@@ -258,20 +245,32 @@ public class StudentController {
             HttpSession session,
             HttpServletResponse response) {
 
+        /*
+         * Completely destroy the current volunteer session.
+         */
+        session.invalidate();
+
 
         /*
-         * Remove the logged-in volunteer from the session.
+         * Prevent the browser from keeping
+         * the logout response cached.
          */
-        session.removeAttribute("studentId");
+        disableCaching(response);
 
 
-        /*
-         * Prevent the browser from keeping the
-         * logout response cached.
-         */
+        return "redirect:/login";
+    }
+
+
+    /**
+     * Prevent the browser and intermediate proxies
+     * from storing protected pages in cache.
+     */
+    private void disableCaching(HttpServletResponse response) {
+
         response.setHeader(
                 "Cache-Control",
-                "no-cache, no-store, must-revalidate"
+                "no-store, no-cache, must-revalidate, max-age=0"
         );
 
         response.setHeader(
@@ -283,8 +282,5 @@ public class StudentController {
                 "Expires",
                 0
         );
-
-
-        return "redirect:/login";
     }
 }

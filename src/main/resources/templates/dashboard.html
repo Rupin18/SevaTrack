@@ -1831,17 +1831,24 @@
      ============================================================= -->
 
 <script>
-
+    /*
+     * Final authenticated-page cache protection.
+     *
+     * pageshow handles pages restored from the browser's
+     * Back/Forward Cache (BFCache).
+     *
+     * unload prevents BFCache restoration in browsers that
+     * use unload-listener eligibility rules.
+     */
     window.addEventListener("pageshow", function (event) {
-
         if (event.persisted) {
-
             window.location.reload();
-
         }
-
     });
 
+    window.addEventListener("unload", function () {
+        // Intentionally empty.
+    });
 </script>
 
 
