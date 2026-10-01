@@ -9,6 +9,143 @@
     <link rel="stylesheet"
           th:href="@{/css/style.css}"
           href="/css/style.css">
+
+    <style>
+        /* ===== NSS ACTIVITY GALLERY ===== */
+        .gallery-section {
+            background: #f7f3f1;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+            margin-top: 36px;
+        }
+
+        .gallery-card {
+            background: #ffffff;
+            border: 1px solid rgba(139, 18, 48, 0.10);
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 14px 35px rgba(40, 4, 13, 0.10);
+            transition: transform .25s ease, box-shadow .25s ease;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 45px rgba(40, 4, 13, 0.16);
+        }
+
+        .gallery-cover {
+            position: relative;
+            height: 245px;
+            overflow: hidden;
+            background: #e9e2df;
+        }
+
+        .gallery-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .35s ease;
+        }
+
+        .gallery-card:hover .gallery-cover img {
+            transform: scale(1.045);
+        }
+
+        .gallery-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            padding: 7px 11px;
+            border-radius: 999px;
+            background: rgba(40, 4, 13, 0.88);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            backdrop-filter: blur(6px);
+        }
+
+        .gallery-body {
+            padding: 22px;
+        }
+
+        .gallery-body h3 {
+            margin: 0 0 12px;
+            color: #450817;
+            font-size: 20px;
+            line-height: 1.25;
+        }
+
+        .gallery-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .gallery-meta span {
+            padding: 6px 9px;
+            border-radius: 999px;
+            background: #fff0e7;
+            color: #8b1230;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .gallery-body p {
+            margin: 0;
+            color: #5d5553;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .gallery-photo-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            margin-top: 14px;
+        }
+
+        .gallery-photo-strip img {
+            width: 100%;
+            height: 82px;
+            object-fit: cover;
+            border-radius: 9px;
+        }
+
+        .gallery-note {
+            margin-top: 28px;
+            padding: 16px 18px;
+            border-left: 4px solid #d6a84f;
+            border-radius: 12px;
+            background: #fffaf0;
+            color: #5d5553;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1000px) {
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-cover {
+                height: 230px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -135,9 +272,6 @@
                 Volunteer Login →
             </a>
 
-            <a href="/admin/login" class="btn outline">
-                Admin Login →
-            </a>
 
         </div>
 
@@ -384,15 +518,14 @@
 
     <div class="section-title light">
 
-        <small>COMMUNITY SERVICE</small>
+        <small>RECENT NSS INITIATIVES</small>
 
         <h2>
-            Our Major <span>Activities</span>
+            Our Recent <span>Activities</span>
         </h2>
 
         <p>
-            NSS activities that can be managed
-            through Seva Track.
+            Real activities and social initiatives carried out by the ARMIET NSS Unit.
         </p>
 
     </div>
@@ -401,86 +534,27 @@
     <div class="activity-grid">
 
         <div class="activity-card">
-
-            <div>🩸</div>
-
-            <h3>Blood Donation</h3>
-
+            <div>🌊</div>
+            <h3>Walk for Water MAHA Walkathon 2026</h3>
             <p>
-                Blood donation camps and
-                volunteer participation.
+                NSS volunteers from ARMIET participated in the Walk for Water MAHA Walkathon 2026 in Thane, promoting awareness about water conservation.
             </p>
-
         </div>
 
-
         <div class="activity-card">
-
-            <div>♻️</div>
-
-            <h3>Cleanliness Drives</h3>
-
+            <div>👷</div>
+            <h3>Celebration of Engineer's Day</h3>
             <p>
-                Community cleanliness and
-                awareness campaigns.
+                Students came together at ARMIET for Engineer's Day through interaction, motivation and participation in the celebration.
             </p>
-
         </div>
 
-
         <div class="activity-card">
-
-            <div>🌱</div>
-
-            <h3>Tree Plantation</h3>
-
+            <div>🚫</div>
+            <h3>Drug Free Mumbai Rally</h3>
             <p>
-                Environmental awareness and
-                plantation activities.
+                NSS volunteers conducted a Nasha Mukt Bharat Abhiyan awareness rally in Sapgaon Village, Shahapur.
             </p>
-
-        </div>
-
-
-        <div class="activity-card">
-
-            <div>❤️</div>
-
-            <h3>Health Awareness</h3>
-
-            <p>
-                Health education and
-                community outreach.
-            </p>
-
-        </div>
-
-
-        <div class="activity-card">
-
-            <div>⛺</div>
-
-            <h3>NSS Special Camps</h3>
-
-            <p>
-                NSS camp activities and
-                volunteer participation.
-            </p>
-
-        </div>
-
-
-        <div class="activity-card">
-
-            <div>🫶</div>
-
-            <h3>Community Outreach</h3>
-
-            <p>
-                Service initiatives supporting
-                local communities.
-            </p>
-
         </div>
 
     </div>
@@ -488,7 +562,112 @@
 </section>
 
 
+<!-- ================= NSS ACTIVITY GALLERY ================= -->
+
+<section id="gallery" class="section gallery-section">
+
+    <div class="section-title">
+        <small>REAL NSS MOMENTS</small>
+
+        <h2>
+            NSS Activity <span>Gallery</span>
+        </h2>
+
+        <p>
+            A collection of real moments from social and educational activities conducted by NSS Unit, ARMIET.
+        </p>
+    </div>
+
+    <div class="gallery-grid">
+
+        <!-- Activity 1 -->
+        <article class="gallery-card">
+            <div class="gallery-cover">
+                <img src="/images/gallery/walk-for-water-2026.jpg"
+                     alt="ARMIET NSS volunteers at Walk for Water MAHA Walkathon 2026 in Thane"
+                     loading="lazy">
+                <span class="gallery-badge">Activity 01</span>
+            </div>
+
+            <div class="gallery-body">
+                <h3>Walk for Water MAHA Walkathon 2026</h3>
+
+                <div class="gallery-meta">
+                    <span>📅 2026</span>
+                    <span>📍 Thane, Maharashtra</span>
+                </div>
+
+                <p>
+                    NSS volunteers from ARMIET participated in the Walk for Water MAHA Walkathon 2026, supporting awareness around the importance of water and water conservation.
+                </p>
+            </div>
+        </article>
+
+
+        <!-- Activity 2 -->
+        <article class="gallery-card">
+            <div class="gallery-cover">
+                <img src="/images/gallery/engineers-day-1.jpg"
+                     alt="Engineer’s Day celebration at ARMIET"
+                     loading="lazy">
+                <span class="gallery-badge">Activity 02</span>
+            </div>
+
+            <div class="gallery-body">
+                <h3>Celebration of Engineer's Day</h3>
+
+                <div class="gallery-meta">
+                    <span>📅 24 Sep 2026</span>
+                    <span>📍 ARMIET, Sapgaon</span>
+                </div>
+
+                <p>
+                    ARMIET students participated in the Engineer's Day celebration, including motivational interactions and views shared by college representatives and students.
+                </p>
+
+                <div class="gallery-photo-strip">
+                    <img src="/images/gallery/engineers-day-1.jpg" alt="Engineer’s Day presentation" loading="lazy">
+                    <img src="/images/gallery/engineers-day-2.jpg" alt="Students attending Engineer’s Day event" loading="lazy">
+                    <img src="/images/gallery/engineers-day-3.jpg" alt="Engineer’s Day event stage" loading="lazy">
+                </div>
+            </div>
+        </article>
+
+
+        <!-- Activity 3 -->
+        <article class="gallery-card">
+            <div class="gallery-cover">
+                <img src="/images/gallery/nasha-mukt-rally-2026.jpg"
+                     alt="ARMIET NSS volunteers at Nasha Mukt Bharat Abhiyan Rally in Sapgaon"
+                     loading="lazy">
+                <span class="gallery-badge">Activity 03</span>
+            </div>
+
+            <div class="gallery-body">
+                <h3>Drug Free Mumbai — Nasha Mukt Bharat Abhiyan Rally</h3>
+
+                <div class="gallery-meta">
+                    <span>📅 01 Oct 2026</span>
+                    <span>📍 Sapgaon, Shahapur</span>
+                </div>
+
+                <p>
+                    NSS Unit ARMIET conducted a Drug Free Mumbai awareness rally in Sapgaon Village under the Nasha Mukt Bharat Abhiyan, with active participation from NSS volunteers.
+                </p>
+            </div>
+        </article>
+
+    </div>
+
+    <div class="gallery-note">
+        📸 <strong>Gallery note:</strong> The photographs shown here are from actual NSS activities shared by the ARMIET NSS Unit.
+    </div>
+
+</section>
+
+
 <!-- ================= VOLUNTEERS ================= -->
+
 
 <section id="volunteers" class="section">
 
@@ -576,70 +755,45 @@
 <section id="announcements" class="section announcements">
 
     <div class="section-title">
-
         <small>NSS UPDATES</small>
 
         <h2>
-            Latest <span>Announcements</span>
+            Recent <span>Updates</span>
         </h2>
 
         <p>
-            Official NSS announcements will
-            appear here.
+            Recent activities and updates from the ARMIET NSS Unit.
         </p>
-
     </div>
 
-
     <div class="announcement">
-
         <div class="date">
-
             <strong>01</strong>
-
-            <small>JUN</small>
-
+            <small>OCT</small>
         </div>
 
         <div>
-
-            <small>NSS UPDATE</small>
-
-            <h3>Blood Donation Camp</h3>
-
+            <small>NSS SOCIAL AWARENESS</small>
+            <h3>Drug Free Mumbai — Nasha Mukt Bharat Abhiyan Rally</h3>
             <p>
-                NSS Blood Donation Camp
-                announcement and participation details.
+                NSS volunteers participated in a drug-free awareness rally in Sapgaon Village, Shahapur.
             </p>
-
         </div>
-
     </div>
 
-
     <div class="announcement">
-
         <div class="date">
-
-            <strong>22</strong>
-
-            <small>MAY</small>
-
+            <strong>24</strong>
+            <small>SEP</small>
         </div>
 
         <div>
-
-            <small>ENVIRONMENT</small>
-
-            <h3>Tree Plantation Drive</h3>
-
+            <small>STUDENT EVENT</small>
+            <h3>Celebration of Engineer's Day</h3>
             <p>
-                Join the ARMIET NSS environmental
-                awareness initiative.
+                Students actively participated in the Engineer's Day celebration at ARMIET through interaction, motivation and shared views.
             </p>
-
         </div>
-
     </div>
 
 </section>
